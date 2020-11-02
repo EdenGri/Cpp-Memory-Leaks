@@ -16,7 +16,7 @@ public:
 
     virtual int traceTree() = 0;
 
-    virtual Tree * clone() = 0 const;
+    virtual Tree * clone() const = 0 ;
 
     Tree(const Tree &oth);
 
@@ -31,7 +31,7 @@ public:
 
     virtual int traceTree();
 
-    virtual CycleTree *clone();
+    virtual CycleTree *clone() const;
 
     CycleTree(const CycleTree &oth);
 
@@ -45,7 +45,7 @@ public:
 
     virtual int traceTree();
 
-    virtual MaxRankTree *clone();
+    virtual MaxRankTree *clone() const;
 
 };
 
@@ -55,7 +55,7 @@ public:
 
     virtual int traceTree();
 
-    virtual RootTree *clone();
+    virtual RootTree *clone() const;
 
 };
 

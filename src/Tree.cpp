@@ -37,7 +37,7 @@ CycleTree::CycleTree(const CycleTree &oth): Tree(oth), currCycle(oth.currCycle){
 
 }
 
-CycleTree *CycleTree::clone() {
+CycleTree *CycleTree::clone() const{
     return new CycleTree(*this);
 }
 
@@ -49,7 +49,7 @@ int MaxRankTree::traceTree() {
     return 0;
 }
 
-MaxRankTree *MaxRankTree::clone() {
+MaxRankTree *MaxRankTree::clone() const {
     return new MaxRankTree(*this);
 }
 
@@ -61,6 +61,6 @@ int RootTree::traceTree() {
     return 0;
 }
 
-RootTree *RootTree::clone() {
+RootTree *RootTree::clone() const {
     return new RootTree(*this);
 }

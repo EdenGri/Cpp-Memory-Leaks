@@ -1,10 +1,21 @@
 //
 // Created by spl211 on 31/10/2020.
 //
+#include <fstream>
+#include <iostream>
 
 #include <Session.h>
+#include "json.hpp"
 
-Session::Session(const std::string &path) {
+
+using json = nlohmann::json;
+
+
+Session::Session(const std::string &path): g({}) {
+    std::ifstream  jsonRead(path);
+    json jsonParser = json::parse(jsonRead);
+
+    std::cout << jsonParser ["tree"] <<std::endl;
 
 }
 

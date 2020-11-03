@@ -11,14 +11,23 @@ public:
 
     void addChild(const Tree &child);
 
-
     static Tree *createTree(const Session &session, int rootLabel);
 
     virtual int traceTree() = 0;
 
     virtual Tree * clone() const = 0 ;
 
+    //copy constructor
     Tree(const Tree &oth);
+
+    //copy assignment
+    Tree& operator =(const Tree &oth);
+
+    //move assignment
+    Tree& operator = (Tree &&oth);
+
+    //destructor
+    virtual ~ Tree();
 
 private:
     int node;

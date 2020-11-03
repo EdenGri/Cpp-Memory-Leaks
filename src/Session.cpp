@@ -3,6 +3,7 @@
 //
 #include <fstream>
 #include <iostream>
+#include <vector>
 
 #include <Session.h>
 #include "json.hpp"
@@ -10,8 +11,8 @@
 
 using json = nlohmann::json;
 
-
-Session::Session(const std::string &path): g({}) {
+//need to finish initialization list
+Session::Session(const std::string &path): g({}){
     std::ifstream  jsonRead(path);
     json jsonParser = json::parse(jsonRead);
 

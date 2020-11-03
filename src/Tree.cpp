@@ -19,10 +19,33 @@ Tree *Tree::createTree(const Session &session, int rootLabel) {
     return nullptr;
 }
 
+//copy constructor implementation
 Tree::Tree(const Tree &oth): node(oth.node), children(){
 for (Tree* p_child : oth.children){
     this->addChild(*p_child);
 }
+}
+//copy assignment operator implementation
+Tree &Tree::operator=(const Tree &oth) {
+    if (&oth == this)
+        return *this;
+}
+
+//move assignment operator implementation
+Tree &Tree::operator=(Tree &&oth) {
+    if (&oth == this)
+        return *this;
+
+}
+
+//move constructor implementation
+Tree::Tree(Tree &&oth) {
+
+}
+
+//destructor implementation
+Tree::~Tree() {
+
 }
 
 CycleTree::CycleTree(int rootLabel, int currCycle): Tree(rootLabel), currCycle(currCycle){

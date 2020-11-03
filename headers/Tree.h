@@ -15,16 +15,19 @@ public:
 
     virtual int traceTree() = 0;
 
-    virtual Tree * clone() const = 0 ;
+    virtual Tree *clone() const = 0;
 
     //copy constructor
     Tree(const Tree &oth);
 
     //copy assignment
-    Tree& operator =(const Tree &oth);
+    Tree &operator=(const Tree &oth);
 
     //move assignment
-    Tree& operator = (Tree &&oth);
+    Tree &operator=(Tree &&oth);
+
+    //move constructor
+    Tree(Tree &&oth);
 
     //destructor
     virtual ~ Tree();

@@ -4,7 +4,7 @@
 
 #include <Agent.h>
 
-Agent::Agent(Session &session) {
+Agent::Agent(Session& session): session(session) {
 
 }
 
@@ -12,6 +12,5 @@ ContactTracer::ContactTracer(Session &session) : Agent(session) {
 
 }
 
-Virus::Virus(int nodeInd, Session &session) {
-
+Virus::Virus(int nodeInd, Session &session) : Agent(session), nodeInd(nodeInd) {
 }

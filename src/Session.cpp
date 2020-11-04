@@ -13,11 +13,10 @@ using json = nlohmann::json;
 
 //need to finish initialization list
 Session::Session(const std::string &path): g({}){
-    std::ifstream  jsonRead(path);
+    std::ifstream jsonRead(path);
     json jsonParser = json::parse(jsonRead);
 
-    std::cout << jsonParser ["tree"] <<std::endl;
-
+    std::cout << jsonParser["tree"] <<std::endl;
 }
 
 void Session::simulate() {

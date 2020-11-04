@@ -16,7 +16,8 @@ private:
 class ContactTracer: public Agent{
 public:
     ContactTracer(Session& session);
-    
+
+    // Dequeues an infected node index from the infected queue, and tries to break the infection chain from that node.
     virtual void act();
 };
 
@@ -24,7 +25,7 @@ public:
 class Virus: public Agent{
 public:
     Virus(int nodeInd, Session& session);
-    
+    // Infects the node they occupy and spreads themselves into adjacent nodes(by creating new virus).
     virtual void act();
 private:
     const int nodeInd;

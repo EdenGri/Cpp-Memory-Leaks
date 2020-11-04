@@ -17,7 +17,8 @@ class ContactTracer: public Agent{
 public:
     ContactTracer(Session& session);
 
-    // Dequeues an infected node index from the infected queue, and tries to break the infection chain from that node.
+    // Dequeues an infected node from the infected queue, and tries to break the chain of infection
+    //creates shortest path tree from infected node using BFS, uses tracetree() method to obtain index of next infected node and removes all edges in graph connecting to it
     virtual void act();
 };
 
@@ -25,7 +26,8 @@ public:
 class Virus: public Agent{
 public:
     Virus(int nodeInd, Session& session);
-    // Infects the node they occupy and spreads themselves into adjacent nodes(by creating new virus).
+    // Infect the nodes they occupy if not already infected
+    // spread themselves into adjacent nodes (virus-free neighbors) in ascending order using node indices
     virtual void act();
 private:
     const int nodeInd;

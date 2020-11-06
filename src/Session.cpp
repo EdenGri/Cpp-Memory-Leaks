@@ -9,13 +9,19 @@
 #include "json.hpp"
 
 
-
 using json = nlohmann::json;
+using namespace std;
 
 //need to finish initialization list
 Session::Session(const std::string &path): g({}){
     std::ifstream jsonRead(path);
     json jsonParser = json::parse(jsonRead);
+
+    string tree1 = jsonParser["tree"];
+
+
+    std::cout << jsonParser["agents"] <<std::endl;
+    std::cout << jsonParser["graph"] <<std::endl;
     std::cout << jsonParser["tree"] <<std::endl;
     std::queue<int> infectionQueue;
     /*/

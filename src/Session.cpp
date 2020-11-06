@@ -18,8 +18,8 @@ Session::Session(const std::string &path): g({}){
     json jsonParser = json::parse(jsonRead);
 
 
-
-
+    std::cout << jsonParser["agents"] <<std::endl;
+    std::cout << jsonParser["graph"] <<std::endl;
     std::cout << jsonParser["tree"] <<std::endl;
 }
 

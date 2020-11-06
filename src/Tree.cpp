@@ -3,6 +3,7 @@
 //
 
 #include <Tree.h>
+#include <iostream>
 
 using namespace std;
 
@@ -85,9 +86,13 @@ Tree::~Tree() {
     for (int i = 0; i < children.size(); i++) //deletes pointers in vector
         delete children[i];
 }
-
+//function added
 int Tree::getNode() const { //getter to get node
     return this->node;
+}
+
+std::vector<Tree *> Tree::getChildren() {
+    return children;
 }
 
 CycleTree::CycleTree(int
@@ -119,13 +124,32 @@ Tree* pop(std::vector<Tree*>& vec)
 }
 
 int MaxRankTree::traceTree() {
-    int max_children = 0;
+    //first phase: find using BFS who is the one with most children
+    size_t max_children = 0;
     vector<Tree*> queue;
+
+    cout<< "start BFS" << endl; //todo delete
     queue.push_back(this);
+    Tree* curr = pop(queue);
+    cout << curr ->getNode() << " , "; //todo delete'
     while (!queue.empty()){
-        Tree* curr = pop(queue);
+        for (auto child : curr -> getChildren())
+            queue.push_back(child);
+        max_children = max(max_children, curr->getChildren().size()); //compares two things of unsigned longs
     }
-    return 0;
+
+    cout <<endl << "end BFS" << endl; //todo delete
+
+    queue.push_back(this);
+    while(!queue.empty()) {
+        for (auto child : curr->getChildren())
+            queue.push_back(child);
+
+        if (curr->getChildren().size() == max_children)
+            return curr->getNode();
+    }
+
+    return -1;
 }
 
 MaxRankTree *MaxRankTree::clone() const {

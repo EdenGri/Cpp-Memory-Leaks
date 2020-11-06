@@ -19,6 +19,8 @@ public:
 
     int getNode() const; //const cause it does not change "this"
 
+    std::vector<Tree*> getChildren();
+
     //copy constructor
     Tree(const Tree &oth);
 

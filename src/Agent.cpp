@@ -17,10 +17,13 @@ void Virus::act(Session& session) {
     Graph g = session.getGraph();
     if (!g.isInfected(nodeInd)){
         g.infectNode(nodeInd);
+        session.enqueueInfected(nodeInd);
     }
     int healthyNeighbor=g.healthyNeighbor(nodeInd);
     if (healthyNeighbor!=-1 ){
-        g.infectNode(healthyNeighbor);
+        g.occupyNode(healthyNeighbor);
+    } else{
+
     }
 
 }

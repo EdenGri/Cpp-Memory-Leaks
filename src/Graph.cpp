@@ -6,7 +6,7 @@
 
 
 
-Graph::Graph(std::vector<std::vector<int>> matrix) : edges(matrix) , infectedList(), occupiesList(){}
+Graph::Graph(std::vector<std::vector<int>> matrix) : edges(matrix) , infectedList(), occupiesList(),chainBreak(false),numOfOccupyNode(0){}
 
 
 void Graph::infectNode(int nodeInd) {
@@ -43,6 +43,15 @@ int Graph::healthyNeighbor(int nodeInt) {
         }
     }
     return -1;
+}
+
+bool Graph::isChainBrake() {
+    if (occupiesList.size()!=numOfOccupyNode){
+        numOfOccupyNode=occupiesList.size();
+    } else{
+        chainBreak= true;
+    }
+    return chainBreak;
 }
 
 

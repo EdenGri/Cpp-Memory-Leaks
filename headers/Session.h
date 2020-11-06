@@ -3,7 +3,9 @@
 
 #include <vector>
 #include <string>
+#include <queue>
 #include "Graph.h"
+#include "Agent.h"
 
 class Agent;
 
@@ -45,6 +47,9 @@ private:
     Graph g;
     TreeType treeType;
     std::vector<Agent*> agents;
+    std:: queue<int> infectionQueue;
+
+
 };
 
 #endif

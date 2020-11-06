@@ -17,13 +17,15 @@ public:
 
     virtual Tree *clone() const = 0;
 
+    int getNode() const; //const cause it does not change "this"
+
     //copy constructor
     Tree(const Tree &oth);
 
-    //copy assignment
+    //copy assignment operator
     Tree &operator=(const Tree &oth);
 
-    //move assignment
+    //move assignment operator
     Tree &operator=(Tree &&oth);
 
     //move constructor
@@ -31,6 +33,7 @@ public:
 
     //destructor
     virtual ~ Tree();
+
 
 private:
     int node;
@@ -48,7 +51,6 @@ public:
 
     virtual CycleTree *clone() const;
 
-    CycleTree(const CycleTree &oth);
 
 private:
     int currCycle;

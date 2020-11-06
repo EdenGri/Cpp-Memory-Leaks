@@ -24,6 +24,9 @@ public:
     // Disconnects node from the graph. remove the edges that contains the given node
     void disconnectNode(int nodeInd);
 
+    //Return the index of the next healthy node neighbor that "nodeInd" should occupy
+    int healthyNeighbor(int nodeInd);
+
 private:
     std::vector<std::vector<int>> edges;
     std::set<int> infectedList;

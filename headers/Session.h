@@ -35,6 +35,9 @@ public:
     // Returns: The dequeued node index if exits, else returns -1
     int dequeueInfected();
 
+    //Returns the graph g
+    Graph getGraph();
+
     // Returns: The tree type
     TreeType getTreeType();
     

@@ -4,13 +4,13 @@
 #include <fstream>
 #include <iostream>
 #include <vector>
-
+#include "Graph.h"
 #include <Session.h>
 #include "json.hpp"
 
-
-using json = nlohmann::json;
 using namespace std;
+using json = nlohmann::json;
+
 
 //need to finish initialization list
 Session::Session(const std::string &path): g({}), treeType(), agents(){
@@ -57,7 +57,7 @@ void Session::addAgent(const Agent &agent) {
 }
 
 void Session::setGraph(const Graph &graph) {
-
+    g = graph;
 }
 
 void Session::enqueueInfected(int i) {
@@ -72,6 +72,22 @@ int Session::dequeueInfected() {
 }
 
 TreeType Session::getTreeType() {
-    return Cycle;
+    json jsonFile;
+    string jsonTreeType = jsonFile.at("tree");
+
+    if (jsonTreeType == "C") {
+        return Cycle;
+    }
+    else if (jsonTreeType == "M") {
+        return MaxRank;
+    }
+    else if (jsonTreeType == "R") {
+        return Root;
+    }
+}
+
+
+Graph Session::getGraph() {
+    return g;
 }
 

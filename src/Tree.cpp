@@ -5,16 +5,17 @@
 #include <Tree.h>
 #include <iostream>
 
+#include "Session.h"
+
 using namespace std;
 
 Tree::Tree(int rootLabel) : node(rootLabel), children() {
-
 }
 
 void Tree::addChild(const Tree &child) {
-    vector<Tree *> &vec_old = this->children; //its just easier
+    vector<Tree *> &vec_old = this->children; //easier todo delete
     Tree *item = child.clone();
-    vector<Tree *> vec_new = vector<Tree *>(); // vector<Tree*> vec_new; calls empty constructor
+    vector<Tree *> vec_new = vector<Tree *>(); // vector<Tree*> vec_new; calls empty constructor todo
     if (vec_old.empty()) {
         vec_old.push_back(item);
         return;
@@ -23,7 +24,7 @@ void Tree::addChild(const Tree &child) {
     for (; vec_old[i]->node < item->node; i++) {
         if (vec_old[i]->node < item->node)
             vec_new.push_back(
-                    (vec_old[i])); // we did push back to pointer and therefore dont need to delete old pointers and there is no memory leak
+                    (vec_old[i])); // we did push back to pointer and therefore dont need to delete old pointers and there is no memory leak todo delete
     }
     vec_new.push_back(item);
     for (; i < vec_old.size(); i++)
@@ -48,18 +49,18 @@ Tree &Tree::operator=(const Tree &oth) {
     if (this == &oth)
         return *this;
 
-    this->node = oth.node;
+    this->node = oth.node; //updates node field todo delete
 
     //clear existing children list
-    //we can press on highlighted for and make prettier for
-    for (int i = 0; i < children.size(); i++) //deletes pointers in vector
+    //we can press on highlighted for and make prettier for todo delete
+    for (int i = 0; i < children.size(); i++) //deletes pointers in me vector
         delete children[i];
 
-    children.clear(); //clears vector and makes his size 0
+    children.clear(); //clears vector and makes it size 0
 
-    //Add new children list
+    //Add new children list from other vector
     for (int i = 0; i < oth.children.size(); i++)
-        children.push_back(oth.children[i]->clone()); //creates new location on heap using clone (deep-copy)
+        children.push_back(oth.children[i]->clone()); //creates copy with diff location on heap using clone (deep-copy) todo delete
 
     return *this;
 }
@@ -71,8 +72,8 @@ Tree &Tree::operator=(Tree &&oth) {
 
     this->node = oth.node;
 
-    this -> children.swap(oth.children);
     //swap is a vector function to swap fields and use memory space already made
+    this -> children.swap(oth.children);
 
     return *this;
 
@@ -83,20 +84,20 @@ Tree::Tree(Tree &&oth) : node(oth.node), children(move(oth.children)){}
 
 //destructor implementation
 Tree::~Tree() {
-    for (int i = 0; i < children.size(); i++) //deletes pointers in vector
+    for (int i = 0; i < children.size(); i++) //deletes pointers in children vector
         delete children[i];
 }
-//function getter added
-int Tree::getNode() const { //getter to get node
+
+//getter to get node
+int Tree::getNode() const {
     return this->node;
 }
-
+//getter to get children
 std::vector<Tree *> Tree::getChildren() {
     return children;
 }
 
 CycleTree::CycleTree(int rootLabel, int currCycle) : Tree(rootLabel), currCycle(currCycle) { //todo
-
 }
 
 int CycleTree::traceTree() {
@@ -121,10 +122,9 @@ Tree* pop(std::vector<Tree*>& vec)
 }
 
 int MaxRankTree::traceTree() {
-    //first phase: find using BFS who is the one with most children
+    //first phase: find using BFS what is the max children size
     size_t max_children = 0;
     vector<Tree*> queue;
-
     cout<< "start BFS" << endl; //todo delete
     queue.push_back(this);
     Tree* curr = pop(queue);
@@ -137,6 +137,7 @@ int MaxRankTree::traceTree() {
 
     cout <<endl << "end BFS" << endl; //todo delete
 
+    //second phase: find who is the node with most children
     queue.push_back(this);
     while(!queue.empty()) {
         for (auto child : curr->getChildren())
@@ -149,7 +150,7 @@ int MaxRankTree::traceTree() {
     return -1;
 }
 
-MaxRankTree *MaxRankTree::clone() const { //
+MaxRankTree *MaxRankTree::clone() const {
     return new MaxRankTree(*this);
 }
 

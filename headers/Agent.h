@@ -23,6 +23,7 @@ public:
     //creates shortest path tree from infected node using BFS, uses tracetree() method to obtain index of next infected node and removes all edges in graph connecting to it
     virtual void act(Session& session);
 
+    virtual ContactTree *clone() const;
 };
 
 
@@ -33,9 +34,12 @@ public:
     // spread themselves into adjacent nodes (virus-free neighbors) in ascending order using node indices
     virtual void act(Session& session);
 
+    virtual Virus *clone() const;
+
 
 private:
     const int nodeInd;
+
 };
 
 #endif

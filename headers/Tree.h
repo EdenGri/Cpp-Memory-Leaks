@@ -2,22 +2,26 @@
 #define TREE_H_
 
 #include <vector>
-
-class Session;
+#include "Session.h"
 
 class Tree {
 public:
     Tree(int rootLabel);
 
+    //adds child to children vector while keeping the sorting order by label
     void addChild(const Tree &child);
 
+    //"put all ifs here" todo delete
     static Tree *createTree(const Session &session, int rootLabel);
 
+    //returns index of node in the graph which contact tracers should disconnect
     virtual int traceTree() = 0;
 
+    //clone creates a copy of the specific tree
     virtual Tree *clone() const = 0;
 
-    int getNode() const; //const cause it does not change "this"
+    //const cause it does not change "this"
+    int getNode() const;
 
     std::vector<Tree*> getChildren();
 

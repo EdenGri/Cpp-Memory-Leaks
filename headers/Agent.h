@@ -8,7 +8,7 @@ class Agent{
 public:
     Agent();
 
-    virtual Agent* clone()=0; //todo
+    virtual Agent* clone() const=0; //todo
 
     virtual void act(Session& session)=0;
 
@@ -23,7 +23,7 @@ public:
     //creates shortest path tree from infected node using BFS, uses tracetree() method to obtain index of next infected node and removes all edges in graph connecting to it
     virtual void act(Session& session);
 
-    virtual ContactTree *clone() const;
+    virtual ContactTracer *clone() const;
 };
 
 

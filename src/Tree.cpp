@@ -23,8 +23,7 @@ void Tree::addChild(const Tree &child) {
     int i = 0;
     for (; vec_old[i]->node < item->node; i++) {
         if (vec_old[i]->node < item->node)
-            vec_new.push_back(
-                    (vec_old[i])); // we did push back to pointer and therefore dont need to delete old pointers and there is no memory leak todo delete
+            vec_new.push_back((vec_old[i])); // we did push back to pointer and therefore dont need to delete old pointers and there is no memory leak todo delete
     }
     vec_new.push_back(item);
     for (; i < vec_old.size(); i++)
@@ -126,7 +125,7 @@ int MaxRankTree::traceTree() {
     size_t max_children = 0;
     vector<Tree*> queue;
     cout<< "start BFS" << endl; //todo delete
-    queue.push_back(this);
+    queue.push_back(this); ///****
     Tree* curr = pop(queue);
     cout << curr ->getNode() << " , "; //todo delete
     while (!queue.empty()){

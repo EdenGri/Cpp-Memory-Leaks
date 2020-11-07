@@ -10,6 +10,10 @@ ContactTracer::ContactTracer() {}
 
 void ContactTracer::act(Session &session) {}
 
+ContactTracer *ContactTracer::clone() const {
+    return new ContactTracer(*this);
+}
+
 
 Virus::Virus(int nodeInd) : Agent(), nodeInd(nodeInd){
 }
@@ -27,6 +31,10 @@ void Virus::act(Session& session) {
         Virus virus = Virus(healthyNeighbor);
         session.addAgent(virus);
     }
+}
+
+Virus *Virus::clone() const {
+        return new Virus(*this);
 }
 
 

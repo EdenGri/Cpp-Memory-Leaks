@@ -4,20 +4,14 @@
 
 #include <Agent.h>
 
-Agent::Agent() {
+Agent::Agent() {}
 
-}
-
-ContactTracer::ContactTracer() {
-
-}
+ContactTracer::ContactTracer() {}
 
 void ContactTracer::act(Session &session) {
 
-//Virus::Virus(int nodeInd, Session &session) : Agent(session), nodeInd(nodeInd) {
-//}
 
-Virus::Virus(int nodeInd, Session &session) : Agent(session), nodeInd(nodeInd) {
+Virus(int nodeInd) : Agent(), nodeInd(nodeInd) {
 }
 
 void Virus::act(Session& session) {

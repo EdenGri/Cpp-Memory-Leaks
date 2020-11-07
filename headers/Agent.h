@@ -12,8 +12,7 @@ public:
 
     virtual void act(Session& session)=0;
 
-private:
-    Session& session;
+
 };
 
 class ContactTracer: public Agent{
@@ -29,7 +28,7 @@ public:
 
 class Virus: public Agent{
 public:
-    Virus(int nodeInd, Session& session);
+    Virus(int nodeInd);
     // Infect the nodes they occupy if not already infected
     // spread themselves into adjacent nodes (virus-free neighbors) in ascending order using node indices
     virtual void act(Session& session);

@@ -5,7 +5,7 @@
 
 
 
-Graph::Graph(std::vector<std::vector<int>> matrix) : edges(matrix) , infectedList(), occupiesList(),chainBreak(false),numOfOccupyNode(0){}
+Graph::Graph(std::vector<std::vector<int>> matrix) : edges(matrix) , infectedList(), occupiedList(),chainBreak(false),numOfOccupiedNodes(0){}
 
 
 void Graph::infectNode(int nodeInd) {
@@ -17,12 +17,12 @@ bool Graph::isInfected(int nodeInd) {
 }
 
 void Graph::occupyNode(int nodeInd) {
-    occupiesList.insert(nodeInd);
+    occupiedList.insert(nodeInd);
 }
 
-bool Graph::isOccupies(int nodeInd) {
+bool Graph::isOccupied(int nodeInd) {
     // just in set c++20 theres contains function.
-    return occupiesList.find(nodeInd) != occupiesList.end();
+    return occupiedList.find(nodeInd) != occupiedList.end();
 }
 
 void Graph::disconnectNode(int nodeInd) {
@@ -44,9 +44,9 @@ int Graph::healthyNeighbor(int nodeInt) {
     return -1;
 }
 
-bool Graph::isChainBrake() {
-    if (occupiesList.size()!=numOfOccupyNode){
-        numOfOccupyNode=occupiesList.size();
+bool Graph::isChainBreak() {
+    if (occupiedList.size()!=numOfOccupiedNodes){
+        numOfOccupiedNodes=occupiedList.size();
     } else{
         chainBreak= true;
     }

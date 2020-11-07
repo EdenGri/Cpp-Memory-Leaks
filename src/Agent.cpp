@@ -8,11 +8,12 @@ Agent::Agent() {}
 
 ContactTracer::ContactTracer() {}
 
-void ContactTracer::act(Session &session) {
+void ContactTracer::act(Session &session) {}
 
 
-Virus(int nodeInd) : Agent(), nodeInd(nodeInd) {
+Virus::Virus(int nodeInd) : Agent(), nodeInd(nodeInd){
 }
+
 
 void Virus::act(Session& session) {
     Graph g = session.getGraph();
@@ -23,11 +24,13 @@ void Virus::act(Session& session) {
     int healthyNeighbor=g.healthyNeighbor(nodeInd);
     if (healthyNeighbor!=-1){
         g.occupyNode(healthyNeighbor);
-        session.addAgent(healthyNeighbor);
-    } else{
-
+        Virus virus = Virus(healthyNeighbor);
+        session.addAgent(virus);
     }
-    return;
 }
+
+
+
+
 
 

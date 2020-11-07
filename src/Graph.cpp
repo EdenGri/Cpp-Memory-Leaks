@@ -36,7 +36,7 @@ int Graph::healthyNeighbor(int nodeInt) {
     for (int i = 0; i < edges.size(); ++i) {
         int j = edges[nodeInt][i];
         if (j==1){
-            if (!isInfected(j)) {
+            if (!isOccupied(j)) {
                 return j;
             }
         }

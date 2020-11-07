@@ -45,13 +45,11 @@ Session::Session(const std::string &path): g({}), treeType(), agents(){
 
 void Session::simulate() {
     while (!g.isChainBreak()){
-        for (Agent agent:agents) {
-            agent.act();
+        int cycleSize=agents.size();
+        for(int i=0; i < cycleSize;i++){
+            agents[i]->act(this);
         }
-
     }
-    return;
-
 }
 
 void Session::addAgent(const Agent &agent) {

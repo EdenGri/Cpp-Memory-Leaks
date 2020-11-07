@@ -6,8 +6,10 @@
 
 class Agent{
 public:
-    Agent(Session& session);
-    
+    Agent();
+
+    virtual Agent* clone()=0; //todo
+
     virtual void act(Session& session)=0;
 
 private:
@@ -16,7 +18,7 @@ private:
 
 class ContactTracer: public Agent{
 public:
-    ContactTracer(Session& session);
+    ContactTracer();
 
     // Dequeues an infected node from the infected queue, and tries to break the chain of infection
     //creates shortest path tree from infected node using BFS, uses tracetree() method to obtain index of next infected node and removes all edges in graph connecting to it

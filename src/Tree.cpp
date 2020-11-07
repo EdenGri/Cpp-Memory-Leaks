@@ -12,9 +12,9 @@ Tree::Tree(int rootLabel) : node(rootLabel), children() {
 }
 
 void Tree::addChild(const Tree &child) {
-    vector<Tree *> &vec_old = this->children;
+    vector<Tree *> &vec_old = this->children; //its just easier
     Tree *item = child.clone();
-    vector<Tree *> vec_new = vector<Tree *>(); // vector<Tree*> vec_new; calls empty
+    vector<Tree *> vec_new = vector<Tree *>(); // vector<Tree*> vec_new; calls empty constructor
     if (vec_old.empty()) {
         vec_old.push_back(item);
         return;
@@ -32,7 +32,7 @@ void Tree::addChild(const Tree &child) {
     this->children = vec_new;
 }
 
-Tree *Tree::createTree(const Session &session, int rootLabel) {
+Tree *Tree::createTree(const Session &session, int rootLabel) { //todo
     return nullptr;
 }
 
@@ -64,7 +64,7 @@ Tree &Tree::operator=(const Tree &oth) {
     return *this;
 }
 
-//move assignment operator implementation ****??
+//move assignment operator implementation
 Tree &Tree::operator=(Tree &&oth) {
     if (&oth == this)
         return *this;
@@ -78,7 +78,7 @@ Tree &Tree::operator=(Tree &&oth) {
 
 }
 
-//move constructor implementation ***??
+//move constructor implementation
 Tree::Tree(Tree &&oth) : node(oth.node), children(move(oth.children)){}
 
 //destructor implementation
@@ -86,7 +86,7 @@ Tree::~Tree() {
     for (int i = 0; i < children.size(); i++) //deletes pointers in vector
         delete children[i];
 }
-//function added
+//function getter added
 int Tree::getNode() const { //getter to get node
     return this->node;
 }
@@ -95,9 +95,7 @@ std::vector<Tree *> Tree::getChildren() {
     return children;
 }
 
-CycleTree::CycleTree(int
-                     rootLabel, int
-                     currCycle) : Tree(rootLabel), currCycle(currCycle) {
+CycleTree::CycleTree(int rootLabel, int currCycle) : Tree(rootLabel), currCycle(currCycle) { //todo
 
 }
 
@@ -110,8 +108,7 @@ CycleTree *CycleTree::clone() const {
     return new CycleTree(*this);
 }
 
-MaxRankTree::MaxRankTree(int
-                         rootLabel) : Tree(rootLabel) {
+MaxRankTree::MaxRankTree(int rootLabel) : Tree(rootLabel) { //todo
 
 }
 //'pop_front', took from stackoverflow
@@ -131,7 +128,7 @@ int MaxRankTree::traceTree() {
     cout<< "start BFS" << endl; //todo delete
     queue.push_back(this);
     Tree* curr = pop(queue);
-    cout << curr ->getNode() << " , "; //todo delete'
+    cout << curr ->getNode() << " , "; //todo delete
     while (!queue.empty()){
         for (auto child : curr -> getChildren())
             queue.push_back(child);
@@ -152,19 +149,18 @@ int MaxRankTree::traceTree() {
     return -1;
 }
 
-MaxRankTree *MaxRankTree::clone() const {
+MaxRankTree *MaxRankTree::clone() const { //
     return new MaxRankTree(*this);
 }
 
-RootTree::RootTree(int
-                   rootLabel) : Tree(rootLabel) {
+RootTree::RootTree(int rootLabel) : Tree(rootLabel) {
 
-}
+} //todo
 
 int RootTree::traceTree() {
     return getNode();
 }
 
-RootTree *RootTree::clone() const {
+RootTree *RootTree::clone() const { //
     return new RootTree(*this);
 }

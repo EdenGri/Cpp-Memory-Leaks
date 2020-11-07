@@ -42,7 +42,8 @@ public:
 
     // Returns: The tree type
     TreeType getTreeType();
-    
+
+    //todo ruleOf5
 private:
     Graph g;
     TreeType treeType;

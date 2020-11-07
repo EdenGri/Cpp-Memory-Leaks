@@ -13,38 +13,34 @@ using json = nlohmann::json;
 using namespace std;
 
 //need to finish initialization list
-Session::Session(const std::string &path): g({}){
+Session::Session(const std::string &path): g({}), treeType(), agents(){
     std::ifstream jsonRead(path);
     json jsonParser = json::parse(jsonRead);
 
+    vector <pair<string, int>> agents1 = jsonParser["agents"];
+    vector<vector<int>> graph1 = jsonParser["graph"];
+    string tree1 = jsonParser["tree"];
 
-    std::cout << jsonParser["agents"] <<std::endl;
-    std::cout << jsonParser["graph"] <<std::endl;
-    std::cout << jsonParser["tree"] <<std::endl;
-    std::queue<int> infectionQueue;
-    /*/
-    for (auto& elem: jsonParser["agents"]) {
+    g= graph1;
+    if(tree1 == "M"){
 
-        Agent agent;
-        if(elem[0]=="C"){
-            ContactTracer agent(this);
-        } else{
-            Virus agent(this,elem[1]);
-        }
-        agents.push_back(agent);
     }
-    /*/
+    else{}
+
+    std::queue<int> infectionQueue;
+
+
 
 
 }
 
 void Session::simulate() {
-    while (!g.isChainBrake()){
-        /*/
+    while (!g.isChainBreak()){
+
         for (Agent agent:agents) {
             agent.act();
         }
-         /*/
+
     }
     return;
 

@@ -4,11 +4,17 @@
 
 #include <Agent.h>
 
-Agent::Agent(Session& session): session(session) {
+Agent::Agent() {
 
 }
 
- ContactTracer::ContactTracer(Session &session) : Agent(session) {}
+ContactTracer::ContactTracer() {
+
+}
+
+void ContactTracer::act(Session &session) {
+
+}
 
 Virus::Virus(int nodeInd, Session &session) : Agent(session), nodeInd(nodeInd) {
 }
@@ -20,12 +26,13 @@ void Virus::act(Session& session) {
         session.enqueueInfected(nodeInd);
     }
     int healthyNeighbor=g.healthyNeighbor(nodeInd);
-    if (healthyNeighbor!=-1 ){
+    if (healthyNeighbor!=-1){
         g.occupyNode(healthyNeighbor);
     } else{
 
     }
 
 }
+
 
 

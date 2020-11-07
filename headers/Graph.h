@@ -19,22 +19,21 @@ public:
     void occupyNode(int nodeInd);
 
     // Returns: True if the node is occupied, else returns false
-    bool isOccupies(int nodeInd);
+    bool isOccupied(int nodeInd);
 
     // Disconnects node from the graph. remove the edges that contains the given node
     void disconnectNode(int nodeInd);
 
     //Return the index of the next healthy node neighbor that "nodeInd" should occupy
     int healthyNeighbor(int nodeInd);
-    bool isChainBrake();
+    bool isChainBreak();
 
 private:
     std::vector<std::vector<int>> edges;
     std::set<int> infectedList;
-    std::set<int> occupiesList;
-    int numOfOccupyNode;
+    std::set<int> occupiedList;
+    int numOfOccupiedNodes;
     bool chainBreak;
-
 
 };
 

@@ -20,6 +20,10 @@ public:
     // Creates a session from a given config.json filepath
     Session(const std::string& path);
 
+    //copy assignment operator
+    Session &operator=(const Session &oth);
+
+
     // Simulates the contact tracing system and creates an output.json for the given session
     //runs in a loop until termination condition is satisfied
     void simulate();

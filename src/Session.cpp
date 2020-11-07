@@ -8,6 +8,8 @@
 #include <Session.h>
 #include "json.hpp"
 
+
+using json = nlohmann::json;
 using namespace std;
 using json = nlohmann::json;
 
@@ -41,6 +43,10 @@ Session::Session(const std::string &path): g({}), treeType(), agents(){
     }
 
 
+}
+
+Session &Session::operator=(const Session &oth) {
+    return <#initializer#>;
 }
 
 void Session::simulate() {

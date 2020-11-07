@@ -14,7 +14,8 @@ ContactTracer::ContactTracer() {
 
 void ContactTracer::act(Session &session) {
 
-}
+//Virus::Virus(int nodeInd, Session &session) : Agent(session), nodeInd(nodeInd) {
+//}
 
 Virus::Virus(int nodeInd, Session &session) : Agent(session), nodeInd(nodeInd) {
 }
@@ -28,11 +29,11 @@ void Virus::act(Session& session) {
     int healthyNeighbor=g.healthyNeighbor(nodeInd);
     if (healthyNeighbor!=-1){
         g.occupyNode(healthyNeighbor);
+        session.addAgent(healthyNeighbor);
     } else{
 
     }
-
+    return;
 }
-
 
 

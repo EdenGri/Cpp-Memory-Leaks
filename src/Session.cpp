@@ -29,14 +29,22 @@ Session::Session(const std::string &path): g({}), treeType(), agents(){
 
     std::queue<int> infectionQueue;
 
+    for (auto& elem: jsonParser["agents"]) {
 
+        Agent agent;
+        if(elem[0]=="C"){
+            ContactTracer agent(this);
+        } else{
+            Virus agent(this,elem[1]);
+        }
+        agents.push_back(agent);
+    }
 
 
 }
 
 void Session::simulate() {
     while (!g.isChainBreak()){
-
         for (Agent agent:agents) {
             agent.act();
         }

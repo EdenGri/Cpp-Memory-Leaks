@@ -53,19 +53,22 @@ void Session::simulate() {
 }
 
 void Session::addAgent(const Agent &agent) {
-
+    agents.push_back(agent);
 }
 
 void Session::setGraph(const Graph &graph) {
 
 }
 
-void Session::enqueueInfected(int) {
-
+void Session::enqueueInfected(int i) {
+    infectionQueue.push(i);
 }
 
 int Session::dequeueInfected() {
-    return 0;
+    if (!infectionQueue.empty()) {
+        return infectionQueue.back();
+    }
+    return -1;
 }
 
 TreeType Session::getTreeType() {

@@ -8,6 +8,8 @@
 #include <Session.h>
 #include "json.hpp"
 
+
+using json = nlohmann::json;
 using namespace std;
 using json = nlohmann::json;
 
@@ -31,15 +33,37 @@ Session::Session(const std::string &path) : g({}) {
     for (auto &elem: jsonParser["agents"]) {
 
         Agent agent;
-        if (elem[0] == "C") {
+        if(elem[0]=="C"){
             ContactTracer agent(this);
-        } else {
-            Virus agent(this, elem[1]);
+        } else{
+            Virus agent(this,elem[1]);
         }
         agents.push_back(agent);
     }
 
 
+}
+
+Session &Session::operator=(const Session &oth) {
+    if (this == &oth) {
+        return *this;
+    } else {
+        g = oth.g;
+        treeType=oth.treeType;
+        infectionQueue=oth.infectionQueue;
+        clearAgents();
+        for (auto agent : oth.agents) {
+            agents.push_back(agent->clone());
+        }
+        return *this;
+    }
+
+}
+
+Session::Session(Session &&oth): g(oth.g),treeType(oth.treeType),infectionQueue(oth.infectionQueue),agents(move(oth.agents))  {}
+
+Session::~Session() {
+    clearAgents();
 }
 
 void Session::simulate() {
@@ -98,6 +122,13 @@ Session::Session(const Session &oth) {
 Session &Session::operator=(Session &&oth) {
     return <#initializer#>;
 }
+
+void Session::clearAgents() {
+    for (auto & agent : agents) {
+        delete agent;
+    }
+}
+
 
 
 

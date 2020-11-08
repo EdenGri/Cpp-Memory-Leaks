@@ -20,6 +20,17 @@ public:
     // Creates a session from a given config.json filepath
     Session(const std::string& path);
 
+    //Copy assignment operator
+    Session &operator=(const Session &oth);
+
+    //Move constructor
+    Session(Session &&oth);
+
+    //Destructor
+    virtual ~Session();
+
+
+
     // Simulates the contact tracing system and creates an output.json for the given session
     //runs in a loop until termination condition is satisfied
     void simulate();
@@ -30,7 +41,7 @@ public:
     // Sets the graph g to its new value
     void setGraph(const Graph& graph);
 
-    // Graph getter
+    //Graph Getter
     Graph getGraph() const;
 
     // Enqueues the infected node index into the infected queue
@@ -43,15 +54,11 @@ public:
     // Returns: The tree type
     TreeType getTreeType();
 
-    //helper function added that returns cycle number
-    int getCycleNum() const;
+    //delete all the agents in the vector agents
+    void clearAgents();
 
-    //copy constructor
-    Session(const Session &oth);
 
-    //move assignment operator
-    Session &operator=(Session &&oth);
-
+    //todo ruleOf5
 private:
     Graph g;
     TreeType treeType;

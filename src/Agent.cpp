@@ -1,14 +1,29 @@
 //
 // Created by spl211 on 31/10/2020.
 //
-
+#include <queue>
 #include <Agent.h>
+#include "Tree.h"
 
 Agent::Agent() {}
 
 ContactTracer::ContactTracer() {}
 
-void ContactTracer::act(Session &session) {}
+void ContactTracer::act(Session &session) {
+    std::queue<int> infectionQueue = session.getInfectionQueue();
+    if (!infectionQueue.empty()){
+        int infectedNode= infectionQueue.back();
+        Graph g=session.getGraph();
+        Tree tree= //todo bfs from infectedNode
+        if (session.getTreeType()=="M"){
+            g.disconnectNode(tree.traceTree())
+        } else if (session.getTreeType()=="C"){
+            g.disconnectNode(tree.traceTree())
+        } else{
+            g.disconnectNode(tree.traceTree())
+        }
+    }
+}
 
 ContactTracer *ContactTracer::clone() const {
     return new ContactTracer(*this);
@@ -32,6 +47,7 @@ void Virus::act(Session& session) {
         session.addAgent(virus);
     }
 }
+
 
 Virus *Virus::clone() const {
         return new Virus(*this);

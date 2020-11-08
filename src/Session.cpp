@@ -30,15 +30,15 @@ Session::Session(const std::string &path) : g({}) {
 
     std::queue<int> infectionQueue;
 
-    for (auto &elem: jsonParser["agents"]) {
-
-        Agent agent;
+    for (auto& elem: jsonParser["agents"]) {
         if(elem[0]=="C"){
-            ContactTracer agent(this);
+            Agent* agent= new ContactTracer();
+            agents.push_back(agent);
         } else{
-            Virus agent(this,elem[1]);
+            Agent* agent=new Virus(this,elem[1]);
+            agents.push_back(agent);
         }
-        agents.push_back(agent);
+
     }
 
 
@@ -52,6 +52,7 @@ Session &Session::operator=(const Session &oth) {
         treeType=oth.treeType;
         infectionQueue=oth.infectionQueue;
         clearAgents();
+        agents.clear();
         for (auto agent : oth.agents) {
             agents.push_back(agent->clone());
         }
@@ -67,10 +68,9 @@ Session::~Session() {
 }
 
 void Session::simulate() {
-    cycle = 0;
-    while (!g.isChainBreak()) {
-        int cycleSize = agents.size();
-        for (int i = 0; i < cycleSize; i++)
+    while (!g.isTerminateCondition()){
+        int cycleSize=agents.size();
+        for(int i=0; i < cycleSize;i++){
             agents[i]->act(this);
         cycle++;
     }
@@ -113,8 +113,6 @@ TreeType Session::getTreeType() {
     }
 }
 
-//copy constructor implementation
-Session::Session(const Session &oth) {
 
 }
 
@@ -127,6 +125,10 @@ void Session::clearAgents() {
     for (auto & agent : agents) {
         delete agent;
     }
+}
+
+queue<int> Session::getInfectionQueue() {
+    return infectionQueue;
 }
 
 

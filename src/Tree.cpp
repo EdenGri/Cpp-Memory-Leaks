@@ -100,7 +100,12 @@ CycleTree::CycleTree(int rootLabel, int currCycle) : Tree(rootLabel), currCycle(
 }
 
 int CycleTree::traceTree() {
-    return 0;
+    Tree* currTree= this;
+    for (int i = 0; i < currCycle; ++i) {
+        vector<Tree *> children=currTree->getChildren();
+        currTree=children[0];
+    }
+    return currTree->getNode();
 }
 
 

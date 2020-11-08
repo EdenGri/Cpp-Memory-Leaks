@@ -48,6 +48,7 @@ void Virus::act(Session& session) {
     }
 }
 
+
 Virus *Virus::clone() const {
         return new Virus(*this);
 }

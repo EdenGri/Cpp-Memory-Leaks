@@ -67,7 +67,7 @@ Session::~Session() {
 }
 
 void Session::simulate() {
-    while (!g.isChainBreak()){
+    while (!g.isTerminateCondition()){
         int cycleSize=agents.size();
         for(int i=0; i < cycleSize;i++){
             agents[i]->act(this);

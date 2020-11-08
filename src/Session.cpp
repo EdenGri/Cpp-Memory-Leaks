@@ -33,20 +33,40 @@ Session::Session(const std::string &path): g({}), treeType(), agents(){
 
     for (auto& elem: jsonParser["agents"]) {
 
-        Agent agent;
+
         if(elem[0]=="C"){
+
             ContactTracer agent(this);
+            agents.push_back(agent);
         } else{
             Virus agent(this,elem[1]);
         }
-        agents.push_back(agent);
+
     }
 
 
 }
 
 Session &Session::operator=(const Session &oth) {
-    return <#initializer#>;
+    if (this == &oth) {
+        return *this;
+    } else {
+        g = oth.g;
+        treeType=oth.treeType;
+        infectionQueue=oth.infectionQueue;
+        clearAgents();
+        for (auto agent : oth.agents) {
+            agents.push_back(agent->clone());
+        }
+        return *this;
+    }
+
+}
+
+Session::Session(Session &&oth): g(oth.g),treeType(oth.treeType),infectionQueue(oth.infectionQueue),agents(move(oth.agents))  {}
+
+Session::~Session() {
+    clearAgents();
 }
 
 void Session::simulate() {
@@ -97,4 +117,13 @@ TreeType Session::getTreeType() {
 Graph Session::getGraph() {
     return g;
 }
+
+void Session::clearAgents() {
+    for (auto & agent : agents) {
+        delete agent;
+    }
+}
+
+
+
 

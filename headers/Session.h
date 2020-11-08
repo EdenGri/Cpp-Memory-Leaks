@@ -20,8 +20,15 @@ public:
     // Creates a session from a given config.json filepath
     Session(const std::string& path);
 
-    //copy assignment operator
+    //Copy assignment operator
     Session &operator=(const Session &oth);
+
+    //Move constructor
+    Session(Session &&oth);
+
+    //Destructor
+    virtual ~Session();
+
 
 
     // Simulates the contact tracing system and creates an output.json for the given session
@@ -46,6 +53,10 @@ public:
 
     // Returns: The tree type
     TreeType getTreeType();
+
+    //delete all the agents in the vector agents
+    void clearAgents();
+
 
     //todo ruleOf5
 private:

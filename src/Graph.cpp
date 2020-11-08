@@ -5,7 +5,10 @@
 
 
 
-Graph::Graph(std::vector<std::vector<int>> matrix) : edges(matrix) , infectedList(), occupiedList(),chainBreak(false),numOfOccupiedNodes(0){}
+Graph::Graph(std::vector<std::vector<int>> matrix) : edges(matrix) , infectedList(), occupiedList(),chainBreak(false),numOfOccupiedNodes(0){
+
+}
+
 
 
 void Graph::infectNode(int nodeInd) {

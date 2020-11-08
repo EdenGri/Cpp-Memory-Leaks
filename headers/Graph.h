@@ -26,14 +26,14 @@ public:
 
     //Return the index of the next healthy node neighbor that "nodeInd" should occupy
     int healthyNeighbor(int nodeInd);
-    bool isChainBreak();
+    bool isTerminateCondition();
 
 private:
     std::vector<std::vector<int>> edges;
     std::set<int> infectedList;
     std::set<int> occupiedList;
     int numOfOccupiedNodes;
-    bool chainBreak;
+    bool terminateCondition;
 
 };
 

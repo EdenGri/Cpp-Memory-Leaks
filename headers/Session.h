@@ -57,6 +57,8 @@ public:
     //delete all the agents in the vector agents
     void clearAgents();
 
+    //Return infectionQueue
+    queue<int> getInfectionQueue();
 
     //todo ruleOf5
 private:

@@ -121,6 +121,10 @@ void Session::clearAgents() {
     }
 }
 
+queue<int> Session::getInfectionQueue() {
+    return infectionQueue;
+}
+
 
 
 

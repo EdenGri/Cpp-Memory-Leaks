@@ -30,6 +30,9 @@ public:
     // Sets the graph g to its new value
     void setGraph(const Graph& graph);
 
+    // Graph getter
+    Graph getGraph() const;
+
     // Enqueues the infected node index into the infected queue
     void enqueueInfected(int);
 
@@ -37,18 +40,24 @@ public:
     // Returns: The dequeued node index if exits, else returns -1
     int dequeueInfected();
 
-    //Returns the graph g
-    Graph getGraph();
-
     // Returns: The tree type
     TreeType getTreeType();
 
-    //todo ruleOf5
+    //helper function added that returns cycle number
+    int getCycleNum() const;
+
+    //copy constructor
+    Session(const Session &oth);
+
+    //move assignment operator
+    Session &operator=(Session &&oth);
+
 private:
     Graph g;
     TreeType treeType;
     std::vector<Agent*> agents;
     std:: queue<int> infectionQueue;
+    int cycle;
 
 
 };

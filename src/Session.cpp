@@ -13,29 +13,28 @@ using json = nlohmann::json;
 
 
 //need to finish initialization list
-Session::Session(const std::string &path): g({}), treeType(), agents(){
+Session::Session(const std::string &path) : g({}) {
     std::ifstream jsonRead(path);
     json jsonParser = json::parse(jsonRead);
 
-    vector <pair<string, int>> agents1 = jsonParser["agents"];
+    vector<pair<string, int>> agents1 = jsonParser["agents"];
     vector<vector<int>> graph1 = jsonParser["graph"];
     string tree1 = jsonParser["tree"];
 
-    g= graph1;
-    if(tree1 == "M"){
+    g = graph1;
+    if (tree1 == "M") {
 
-    }
-    else{}
+    } else {}
 
     std::queue<int> infectionQueue;
 
-    for (auto& elem: jsonParser["agents"]) {
+    for (auto &elem: jsonParser["agents"]) {
 
         Agent agent;
-        if(elem[0]=="C"){
+        if (elem[0] == "C") {
             ContactTracer agent(this);
-        } else{
-            Virus agent(this,elem[1]);
+        } else {
+            Virus agent(this, elem[1]);
         }
         agents.push_back(agent);
     }
@@ -44,21 +43,26 @@ Session::Session(const std::string &path): g({}), treeType(), agents(){
 }
 
 void Session::simulate() {
-    while (!g.isChainBreak()){
-        int cycleSize=agents.size();
-        for(int i=0; i < cycleSize;i++){
+    cycle = 0;
+    while (!g.isChainBreak()) {
+        int cycleSize = agents.size();
+        for (int i = 0; i < cycleSize; i++)
             agents[i]->act(this);
-        }
+        cycle++;
     }
 }
 
 void Session::addAgent(const Agent &agent) {
-   Agent* clone = agent.clone();
-   agents.push_back(clone); //*** todo check if we need to create new agents vector
+    Agent *clone = agent.clone();
+    agents.push_back(clone); //*** todo check if we need to create new agents vector
 }
 
 void Session::setGraph(const Graph &graph) {
     g = graph;
+}
+
+Graph Session::getGraph() const {
+    return g;
 }
 
 void Session::enqueueInfected(int i) {
@@ -78,17 +82,22 @@ TreeType Session::getTreeType() {
 
     if (jsonTreeType == "C") {
         return Cycle;
-    }
-    else if (jsonTreeType == "M") {
+    } else if (jsonTreeType == "M") {
         return MaxRank;
-    }
-    else if (jsonTreeType == "R") {
+    } else if (jsonTreeType == "R") {
         return Root;
     }
 }
 
+//copy constructor implementation
+Session::Session(const Session &oth) {
 
-Graph Session::getGraph() {
-    return g;
 }
+
+//move assignment operator implementation
+Session &Session::operator=(Session &&oth) {
+    return <#initializer#>;
+}
+
+
 

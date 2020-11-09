@@ -41,7 +41,6 @@ private:
     std::set<int> occupiedList;
     int numOfOccupiedNodes;
     bool terminateCondition;
-
 };
 
 #endif

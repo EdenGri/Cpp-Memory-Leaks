@@ -12,7 +12,6 @@ public:
     //adds child to children vector while keeping the sorting order by label
     void addChild(const Tree &child);
 
-    //"put all ifs here" todo delete
     static Tree *createTree(const Session &session, int rootLabel);
 
     //returns index of node in the graph which contact tracers should disconnect

@@ -35,10 +35,6 @@ public:
     //Destructor
     virtual ~Session();
 
-
-
-
-
     // Simulates the contact tracing system and creates an output.json for the given session
     //runs in a loop until termination condition is satisfied
     void simulate();

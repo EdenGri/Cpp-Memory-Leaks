@@ -30,7 +30,7 @@ public:
     Session &operator=(Session &&oth);
 
     //Move constructor
-    Session(Session &&oth) noexcept ;
+    Session(Session &&oth) ;
 
     //Destructor
     virtual ~Session();

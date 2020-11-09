@@ -16,18 +16,12 @@ void ContactTracer::act(Session &session) {
         int infectedNode= infectionQueue.back();
         Graph g=session.getGraph();
         Tree* tree = session.getGraph().Bfs(infectedNode, session) ; //todo bfs from infectedNode
-        if (session.getTreeType()=="M"){
-            g.disconnectNode(tree.traceTree())
-        } else if (session.getTreeType()=="C"){
-            g.disconnectNode(tree.traceTree())
-        } else{
-            g.disconnectNode(tree.traceTree())
-        }
+        g.disconnectNode(tree->traceTree());
     }
 }
 
 
-ContactTracer *ContactTracer::clone() const {
+Agent* ContactTracer::clone() const {
     return new ContactTracer(*this);
 }
 
@@ -51,7 +45,7 @@ void Virus::act(Session& session) {
 }
 
 
-Virus *Virus::clone() const {
+Agent* Virus::clone() const {
         return new Virus(*this);
 }
 

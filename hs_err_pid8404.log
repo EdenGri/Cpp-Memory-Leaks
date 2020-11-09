@@ -1,0 +1,382 @@
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 65011712 bytes for committing reserved memory.
+# Possible reasons:
+#   The system is out of physical RAM or swap space
+#   The process is running with CompressedOops enabled, and the Java Heap may be blocking the growth of the native heap
+# Possible solutions:
+#   Reduce memory load on the system
+#   Increase physical memory or swap space
+#   Check if swap backing store is full
+#   Decrease Java heap size (-Xmx/-Xms)
+#   Decrease number of Java threads
+#   Decrease Java thread stack sizes (-Xss)
+#   Set larger code cache with -XX:ReservedCodeCacheSize=
+# This output file may be truncated or incomplete.
+#
+#  Out of Memory Error (os_linux.cpp:2877), pid=8404, tid=8407
+#
+# JRE version:  (11.0.8+10) (build )
+# Java VM: OpenJDK 64-Bit Server VM (11.0.8+10-b944.34, mixed mode, sharing, tiered, compressed oops, g1 gc, linux-amd64)
+# Core dump will be written. Default location: Core dumps may be processed with "/usr/share/apport/apport %p %s %c %d %P %E" (or dumping to /home/spl211/CLionProjects/Spl-Assignment1/core.8404)
+#
+
+---------------  S U M M A R Y ------------
+
+Command Line: org.jetbrains.git4idea.http.GitAskPassApp Username for 'https://github.com': 
+
+Host: Intel(R) Core(TM) i5-8250U CPU @ 1.60GHz, 2 cores, 3G, Ubuntu 18.04.1 LTS
+Time: Tue Nov 10 00:26:54 2020 IST elapsed time: 0 seconds (0d 0h 0m 0s)
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x00007fcf28028800):  JavaThread "Unknown thread" [_thread_in_vm, id=8407, stack(0x00007fcf3062b000,0x00007fcf3072c000)]
+
+Stack: [0x00007fcf3062b000,0x00007fcf3072c000],  sp=0x00007fcf3072a200,  free space=1020k
+Native frames: (J=compiled Java code, A=aot compiled Java code, j=interpreted, Vv=VM code, C=native code)
+V  [libjvm.so+0xd680df]  VMError::report_and_die(int, char const*, char const*, __va_list_tag*, Thread*, unsigned char*, void*, void*, char const*, int, unsigned long)+0x37f
+V  [libjvm.so+0xd68dbb]  VMError::report_and_die(Thread*, char const*, int, unsigned long, VMErrorType, char const*, __va_list_tag*)+0x2b
+V  [libjvm.so+0x653115]  report_vm_out_of_memory(char const*, int, unsigned long, VMErrorType, char const*, ...)+0xc5
+V  [libjvm.so+0xb71028]  os::pd_commit_memory_or_exit(char*, unsigned long, unsigned long, bool, char const*)+0xd8
+V  [libjvm.so+0xb683cd]  os::commit_memory_or_exit(char*, unsigned long, unsigned long, bool, char const*)+0x1d
+V  [libjvm.so+0x76c07c]  G1PageBasedVirtualSpace::commit_preferred_pages(unsigned long, unsigned long)+0x6c
+V  [libjvm.so+0x76c45e]  G1PageBasedVirtualSpace::commit(unsigned long, unsigned long)+0x19e
+V  [libjvm.so+0x775756]  G1RegionsLargerThanCommitSizeMapper::commit_regions(unsigned int, unsigned long, WorkGang*)+0x46
+V  [libjvm.so+0x7edcd4]  HeapRegionManager::commit_regions(unsigned int, unsigned long, WorkGang*)+0x54
+V  [libjvm.so+0x7ee8e0]  HeapRegionManager::make_regions_available(unsigned int, unsigned int, WorkGang*)+0x30
+V  [libjvm.so+0x7eed07]  HeapRegionManager::expand_at(unsigned int, unsigned int, WorkGang*) [clone .part.24]+0xf7
+V  [libjvm.so+0x72a290]  G1CollectedHeap::expand(unsigned long, WorkGang*, double*)+0xe0
+V  [libjvm.so+0x72a991]  G1CollectedHeap::initialize()+0x681
+V  [libjvm.so+0xd2ae61]  Universe::initialize_heap()+0x41
+V  [libjvm.so+0xd2b136]  universe_init()+0x46
+V  [libjvm.so+0x80db97]  init_globals()+0x57
+V  [libjvm.so+0xd04eda]  Threads::create_vm(JavaVMInitArgs*, bool*)+0x30a
+V  [libjvm.so+0x8b22f1]  JNI_CreateJavaVM+0x51
+C  [libjli.so+0x3c98]  JavaMain+0x88
+
+
+---------------  P R O C E S S  ---------------
+
+Threads class SMR info:
+_java_thread_list=0x000055ea0ad82ee0, length=0, elements={
+}
+
+Java Threads: ( => current thread )
+
+Other Threads:
+  0x00007fcf28040800 GCTaskThread "GC Thread#0" [stack: 0x00007fcf2cc4a000,0x00007fcf2cd4a000] [id=8408]
+  0x00007fcf2805b800 ConcurrentGCThread "G1 Main Marker" [stack: 0x00007fcf2c37c000,0x00007fcf2c47c000] [id=8409]
+  0x00007fcf2805d800 ConcurrentGCThread "G1 Conc#0" [stack: 0x00007fcf2c27a000,0x00007fcf2c37a000] [id=8410]
+
+[error occurred during error reporting (printing all threads), id 0xb, SIGSEGV (0xb) at pc=0x00007fcf2ecaba10]
+
+VM state:not at safepoint (not fully initialized)
+
+VM Mutex/Monitor currently owned by a thread:  ([mutex/lock_event])
+[0x00007fcf28025060] Heap_lock - owner thread: 0x00007fcf28028800
+
+Heap address: 0x00000000c2400000, size: 988 MB, Compressed Oops mode: Non-zero based: 0x00000000c2400000
+Narrow klass base: 0x0000000000000000, Narrow klass shift: 0
+
+GC Heap History (0 events):
+No events
+
+Deoptimization events (0 events):
+No events
+
+Classes redefined (0 events):
+No events
+
+Internal exceptions (0 events):
+No events
+
+Events (2 events):
+Event: 0.236 Protecting memory [0x00007fcf3062b000,0x00007fcf3062f000] with protection modes 0
+Event: 0.244 Loaded shared library /home/spl211/Desktop/Clion/clion-2020.2.4/jbr/lib/libzip.so
+
+
+Dynamic libraries:
+c6200000-100000000 ---p 00000000 00:00 0 
+55ea09161000-55ea09162000 r-xp 00000000 08:01 1070975                    /home/spl211/Desktop/Clion/clion-2020.2.4/jbr/bin/java
+55ea09362000-55ea09363000 r--p 00001000 08:01 1070975                    /home/spl211/Desktop/Clion/clion-2020.2.4/jbr/bin/java
+55ea09363000-55ea09364000 rw-p 00002000 08:01 1070975                    /home/spl211/Desktop/Clion/clion-2020.2.4/jbr/bin/java
+55ea0ad7f000-55ea0ada0000 rw-p 00000000 00:00 0                          [heap]
+7fcf00000000-7fcf00021000 rw-p 00000000 00:00 0 
+7fcf00021000-7fcf04000000 ---p 00000000 00:00 0 
+7fcf08000000-7fcf08021000 rw-p 00000000 00:00 0 
+7fcf08021000-7fcf0c000000 ---p 00000000 00:00 0 
+7fcf0d090000-7fcf0f090000 rw-p 00000000 00:00 0 
+7fcf0f090000-7fcf10000000 ---p 00000000 00:00 0 
+7fcf10000000-7fcf10021000 rw-p 00000000 00:00 0 
+7fcf10021000-7fcf14000000 ---p 00000000 00:00 0 
+7fcf144f1000-7fcf1487e000 rw-p 00000000 00:00 0 
+7fcf1487e000-7fcf157ee000 ---p 00000000 00:00 0 
+7fcf157ee000-7fcf15a5e000 rwxp 00000000 00:00 0 
+7fcf15a5e000-7fcf15d7d000 ---p 00000000 00:00 0 
+7fcf15d7d000-7fcf15fed000 rwxp 00000000 00:00 0 
+7fcf15fed000-7fcf1d2b5000 ---p 00000000 00:00 0 
+7fcf1d2b5000-7fcf1d525000 rwxp 00000000 00:00 0 
+7fcf1d525000-7fcf247ee000 ---p 00000000 00:00 0 
+7fcf247ee000-7fcf28000000 r--s 00000000 08:01 1192062                    /home/spl211/Desktop/Clion/clion-2020.2.4/jbr/lib/modules
+7fcf28000000-7fcf28072000 rw-p 00000000 00:00 0 
+7fcf28072000-7fcf2c000000 ---p 00000000 00:00 0 
+7fcf2c076000-7fcf2c278000 rw-p 00000000 00:00 0 
+7fcf2c278000-7fcf2c279000 ---p 00000000 00:00 0 
+7fcf2c279000-7fcf2c37a000 rw-p 00000000 00:00 0 
+7fcf2c37a000-7fcf2c37b000 ---p 00000000 00:00 0 
+7fcf2c37b000-7fcf2c47c000 rw-p 00000000 00:00 0 
+7fcf2c47c000-7fcf2ca46000 ---p 00000000 00:00 0 
+7fcf2ca46000-7fcf2cc48000 rw-p 00000000 00:00 0 
+7fcf2cc48000-7fcf2cc49000 ---p 00000000 00:00 0 
+7fcf2cc49000-7fcf2cd4f000 rw-p 00000000 00:00 0 
+7fcf2cd4f000-7fcf2ce35000 ---p 00000000 00:00 0 
+7fcf2ce35000-7fcf2ce3a000 rw-p 00000000 00:00 0 
+7fcf2ce3a000-7fcf2cf20000 ---p 00000000 00:00 0 
+7fcf2cf20000-7fcf2cf27000 r-xp 00000000 08:01 1191788                    /home/spl211/Desktop/Clion/clion-2020.2.4/jbr/lib/libzip.so
+7fcf2cf27000-7fcf2d126000 ---p 00007000 08:01 1191788                    /home/spl211/Desktop/Clion/clion-2020.2.4/jbr/lib/libzip.so
+7fcf2d126000-7fcf2d127000 r--p 00006000 08:01 1191788                    /home/spl211/Desktop/Clion/clion-2020.2.4/jbr/lib/libzip.so
+7fcf2d127000-7fcf2d128000 rw-p 00000000 00:00 0 
+7fcf2d128000-7fcf2d133000 r-xp 00000000 08:01 1185646                    /lib/x86_64-linux-gnu/libnss_files-2.27.so
+7fcf2d133000-7fcf2d332000 ---p 0000b000 08:01 1185646                    /lib/x86_64-linux-gnu/libnss_files-2.27.so
+7fcf2d332000-7fcf2d333000 r--p 0000a000 08:01 1185646                    /lib/x86_64-linux-gnu/libnss_files-2.27.so
+7fcf2d333000-7fcf2d334000 rw-p 0000b000 08:01 1185646                    /lib/x86_64-linux-gnu/libnss_files-2.27.so
+7fcf2d334000-7fcf2d33a000 rw-p 00000000 00:00 0 
+7fcf2d33a000-7fcf2d351000 r-xp 00000000 08:01 1185623                    /lib/x86_64-linux-gnu/libnsl-2.27.so
+7fcf2d351000-7fcf2d550000 ---p 00017000 08:01 1185623                    /lib/x86_64-linux-gnu/libnsl-2.27.so
+7fcf2d550000-7fcf2d551000 r--p 00016000 08:01 1185623                    /lib/x86_64-linux-gnu/libnsl-2.27.so
+7fcf2d551000-7fcf2d552000 rw-p 00017000 08:01 1185623                    /lib/x86_64-linux-gnu/libnsl-2.27.so
+7fcf2d552000-7fcf2d554000 rw-p 00000000 00:00 0 
+7fcf2d554000-7fcf2d55f000 r-xp 00000000 08:01 1185661                    /lib/x86_64-linux-gnu/libnss_nis-2.27.so
+7fcf2d55f000-7fcf2d75e000 ---p 0000b000 08:01 1185661                    /lib/x86_64-linux-gnu/libnss_nis-2.27.so
+7fcf2d75e000-7fcf2d75f000 r--p 0000a000 08:01 1185661                    /lib/x86_64-linux-gnu/libnss_nis-2.27.so
+7fcf2d75f000-7fcf2d760000 rw-p 0000b000 08:01 1185661                    /lib/x86_64-linux-gnu/libnss_nis-2.27.so
+7fcf2d760000-7fcf2d768000 r-xp 00000000 08:01 1185624                    /lib/x86_64-linux-gnu/libnss_compat-2.27.so
+7fcf2d768000-7fcf2d968000 ---p 00008000 08:01 1185624                    /lib/x86_64-linux-gnu/libnss_compat-2.27.so
+7fcf2d968000-7fcf2d969000 r--p 00008000 08:01 1185624                    /lib/x86_64-linux-gnu/libnss_compat-2.27.so
+7fcf2d969000-7fcf2d96a000 rw-p 00009000 08:01 1185624                    /lib/x86_64-linux-gnu/libnss_compat-2.27.so
+7fcf2d96a000-7fcf2d985000 r-xp 00000000 08:01 1191770                    /home/spl211/Desktop/Clion/clion-2020.2.4/jbr/lib/libjimage.so
+7fcf2d985000-7fcf2db85000 ---p 0001b000 08:01 1191770                    /home/spl211/Desktop/Clion/clion-2020.2.4/jbr/lib/libjimage.so
+7fcf2db85000-7fcf2db87000 r--p 0001b000 08:01 1191770                    /home/spl211/Desktop/Clion/clion-2020.2.4/jbr/lib/libjimage.so
+7fcf2db87000-7fcf2db88000 rw-p 0001d000 08:01 1191770                    /home/spl211/Desktop/Clion/clion-2020.2.4/jbr/lib/libjimage.so
+7fcf2db88000-7fcf2dbb1000 r-xp 00000000 08:01 1191765                    /home/spl211/Desktop/Clion/clion-2020.2.4/jbr/lib/libjava.so
+7fcf2dbb1000-7fcf2ddb0000 ---p 00029000 08:01 1191765                    /home/spl211/Desktop/Clion/clion-2020.2.4/jbr/lib/libjava.so
+7fcf2ddb0000-7fcf2ddb1000 r--p 00028000 08:01 1191765                    /home/spl211/Desktop/Clion/clion-2020.2.4/jbr/lib/libjava.so
+7fcf2ddb1000-7fcf2ddb2000 rw-p 00029000 08:01 1191765                    /home/spl211/Desktop/Clion/clion-2020.2.4/jbr/lib/libjava.so
+7fcf2ddb2000-7fcf2ddb3000 rw-p 00000000 00:00 0 
+7fcf2ddb3000-7fcf2ddc0000 r-xp 00000000 08:01 1191787                    /home/spl211/Desktop/Clion/clion-2020.2.4/jbr/lib/libverify.so
+7fcf2ddc0000-7fcf2dfbf000 ---p 0000d000 08:01 1191787                    /home/spl211/Desktop/Clion/clion-2020.2.4/jbr/lib/libverify.so
+7fcf2dfbf000-7fcf2dfc1000 r--p 0000c000 08:01 1191787                    /home/spl211/Desktop/Clion/clion-2020.2.4/jbr/lib/libverify.so
+7fcf2dfc1000-7fcf2dfc2000 rw-p 00000000 00:00 0 
+7fcf2dfc2000-7fcf2dfc9000 r-xp 00000000 08:01 1185778                    /lib/x86_64-linux-gnu/librt-2.27.so
+7fcf2dfc9000-7fcf2e1c8000 ---p 00007000 08:01 1185778                    /lib/x86_64-linux-gnu/librt-2.27.so
+7fcf2e1c8000-7fcf2e1c9000 r--p 00006000 08:01 1185778                    /lib/x86_64-linux-gnu/librt-2.27.so
+7fcf2e1c9000-7fcf2e1ca000 rw-p 00007000 08:01 1185778                    /lib/x86_64-linux-gnu/librt-2.27.so
+7fcf2e1ca000-7fcf2e367000 r-xp 00000000 08:01 1185620                    /lib/x86_64-linux-gnu/libm-2.27.so
+7fcf2e367000-7fcf2e566000 ---p 0019d000 08:01 1185620                    /lib/x86_64-linux-gnu/libm-2.27.so
+7fcf2e566000-7fcf2e567000 r--p 0019c000 08:01 1185620                    /lib/x86_64-linux-gnu/libm-2.27.so
+7fcf2e567000-7fcf2e568000 rw-p 0019d000 08:01 1185620                    /lib/x86_64-linux-gnu/libm-2.27.so
+7fcf2e568000-7fcf2f594000 r-xp 00000000 08:01 1192073                    /home/spl211/Desktop/Clion/clion-2020.2.4/jbr/lib/server/libjvm.so
+7fcf2f594000-7fcf2f793000 ---p 0102c000 08:01 1192073                    /home/spl211/Desktop/Clion/clion-2020.2.4/jbr/lib/server/libjvm.so
+7fcf2f793000-7fcf2f852000 r--p 0102b000 08:01 1192073                    /home/spl211/Desktop/Clion/clion-2020.2.4/jbr/lib/server/libjvm.so
+7fcf2f852000-7fcf2f88b000 rw-p 010ea000 08:01 1192073                    /home/spl211/Desktop/Clion/clion-2020.2.4/jbr/lib/server/libjvm.so
+7fcf2f88b000-7fcf2f8e2000 rw-p 00000000 00:00 0 
+7fcf2f8e2000-7fcf2fac9000 r-xp 00000000 08:01 1185515                    /lib/x86_64-linux-gnu/libc-2.27.so
+7fcf2fac9000-7fcf2fcc9000 ---p 001e7000 08:01 1185515                    /lib/x86_64-linux-gnu/libc-2.27.so
+7fcf2fcc9000-7fcf2fccd000 r--p 001e7000 08:01 1185515                    /lib/x86_64-linux-gnu/libc-2.27.so
+7fcf2fccd000-7fcf2fccf000 rw-p 001eb000 08:01 1185515                    /lib/x86_64-linux-gnu/libc-2.27.so
+7fcf2fccf000-7fcf2fcd3000 rw-p 00000000 00:00 0 
+7fcf2fcd3000-7fcf2fcd6000 r-xp 00000000 08:01 1185574                    /lib/x86_64-linux-gnu/libdl-2.27.so
+7fcf2fcd6000-7fcf2fed5000 ---p 00003000 08:01 1185574                    /lib/x86_64-linux-gnu/libdl-2.27.so
+7fcf2fed5000-7fcf2fed6000 r--p 00002000 08:01 1185574                    /lib/x86_64-linux-gnu/libdl-2.27.so
+7fcf2fed6000-7fcf2fed7000 rw-p 00003000 08:01 1185574                    /lib/x86_64-linux-gnu/libdl-2.27.so
+7fcf2fed7000-7fcf2fee6000 r-xp 00000000 08:01 1191747                    /home/spl211/Desktop/Clion/clion-2020.2.4/jbr/lib/jli/libjli.so
+7fcf2fee6000-7fcf300e5000 ---p 0000f000 08:01 1191747                    /home/spl211/Desktop/Clion/clion-2020.2.4/jbr/lib/jli/libjli.so
+7fcf300e5000-7fcf300e6000 r--p 0000e000 08:01 1191747                    /home/spl211/Desktop/Clion/clion-2020.2.4/jbr/lib/jli/libjli.so
+7fcf300e6000-7fcf300e7000 rw-p 0000f000 08:01 1191747                    /home/spl211/Desktop/Clion/clion-2020.2.4/jbr/lib/jli/libjli.so
+7fcf300e7000-7fcf30101000 r-xp 00000000 08:01 1185740                    /lib/x86_64-linux-gnu/libpthread-2.27.so
+7fcf30101000-7fcf30300000 ---p 0001a000 08:01 1185740                    /lib/x86_64-linux-gnu/libpthread-2.27.so
+7fcf30300000-7fcf30301000 r--p 00019000 08:01 1185740                    /lib/x86_64-linux-gnu/libpthread-2.27.so
+7fcf30301000-7fcf30302000 rw-p 0001a000 08:01 1185740                    /lib/x86_64-linux-gnu/libpthread-2.27.so
+7fcf30302000-7fcf30306000 rw-p 00000000 00:00 0 
+7fcf30306000-7fcf30322000 r-xp 00000000 08:01 1185776                    /lib/x86_64-linux-gnu/libz.so.1.2.11
+7fcf30322000-7fcf30521000 ---p 0001c000 08:01 1185776                    /lib/x86_64-linux-gnu/libz.so.1.2.11
+7fcf30521000-7fcf30522000 r--p 0001b000 08:01 1185776                    /lib/x86_64-linux-gnu/libz.so.1.2.11
+7fcf30522000-7fcf30523000 rw-p 0001c000 08:01 1185776                    /lib/x86_64-linux-gnu/libz.so.1.2.11
+7fcf30523000-7fcf3054a000 r-xp 00000000 08:01 1185318                    /lib/x86_64-linux-gnu/ld-2.27.so
+7fcf3060a000-7fcf3062b000 rw-p 00000000 00:00 0 
+7fcf3062b000-7fcf3062f000 ---p 00000000 00:00 0 
+7fcf3062f000-7fcf30730000 rw-p 00000000 00:00 0 
+7fcf30734000-7fcf30739000 rw-p 00000000 00:00 0 
+7fcf30739000-7fcf30740000 ---p 00000000 00:00 0 
+7fcf30740000-7fcf30748000 rw-s 00000000 08:01 1050642                    /tmp/hsperfdata_spl211/8404
+7fcf30748000-7fcf30749000 ---p 00000000 00:00 0 
+7fcf30749000-7fcf3074a000 r--p 00000000 00:00 0 
+7fcf3074a000-7fcf3074b000 r--p 00027000 08:01 1185318                    /lib/x86_64-linux-gnu/ld-2.27.so
+7fcf3074b000-7fcf3074c000 rw-p 00028000 08:01 1185318                    /lib/x86_64-linux-gnu/ld-2.27.so
+7fcf3074c000-7fcf3074d000 rw-p 00000000 00:00 0 
+7ffdb25ff000-7ffdb2620000 rw-p 00000000 00:00 0                          [stack]
+7ffdb2695000-7ffdb2698000 r--p 00000000 00:00 0                          [vvar]
+7ffdb2698000-7ffdb269a000 r-xp 00000000 00:00 0                          [vdso]
+ffffffffff600000-ffffffffff601000 r-xp 00000000 00:00 0                  [vsyscall]
+
+
+VM Arguments:
+java_command: org.jetbrains.git4idea.http.GitAskPassApp Username for 'https://github.com': 
+java_class_path (initial): /home/spl211/Desktop/Clion/clion-2020.2.4/plugins/git4idea/lib/git4idea-rt.jar:/home/spl211/Desktop/Clion/clion-2020.2.4/lib/xmlrpc-2.0.1.jar:/home/spl211/Desktop/Clion/clion-2020.2.4/lib/commons-codec-1.14.jar
+Launcher Type: SUN_STANDARD
+
+[Global flags]
+     intx CICompilerCount                          = 2                                         {product} {ergonomic}
+     uint ConcGCThreads                            = 1                                         {product} {ergonomic}
+     uint G1ConcRefinementThreads                  = 2                                         {product} {ergonomic}
+   size_t G1HeapRegionSize                         = 1048576                                   {product} {ergonomic}
+    uintx GCDrainStackTargetSize                   = 64                                        {product} {ergonomic}
+   size_t InitialHeapSize                          = 65011712                                  {product} {ergonomic}
+   size_t MarkStackSize                            = 4194304                                   {product} {ergonomic}
+   size_t MaxHeapSize                              = 1035993088                                {product} {ergonomic}
+   size_t MinHeapDeltaBytes                        = 1048576                                   {product} {ergonomic}
+    uintx NonNMethodCodeHeapSize                   = 5825164                                {pd product} {ergonomic}
+    uintx NonProfiledCodeHeapSize                  = 122916538                              {pd product} {ergonomic}
+    uintx ProfiledCodeHeapSize                     = 122916538                              {pd product} {ergonomic}
+    uintx ReservedCodeCacheSize                    = 251658240                              {pd product} {ergonomic}
+     bool SegmentedCodeCache                       = true                                      {product} {ergonomic}
+     bool UseCompressedClassPointers               = true                                 {lp64_product} {ergonomic}
+     bool UseCompressedOops                        = true                                 {lp64_product} {ergonomic}
+     bool UseG1GC                                  = true                                      {product} {ergonomic}
+
+Logging:
+Log output configuration:
+ #0: stdout all=warning uptime,level,tags
+ #1: stderr all=off uptime,level,tags
+
+Environment Variables:
+PATH=/usr/lib/git-core:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+USERNAME=spl211
+SHELL=/bin/bash
+DISPLAY=:0
+LANG=en_IL
+LC_ALL=en_US.UTF-8
+
+Signal Handlers:
+SIGSEGV: [libjvm.so+0xd68e10], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGBUS: [libjvm.so+0xd68e10], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGFPE: [libjvm.so+0xd68e10], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGPIPE: [libjvm.so+0xb6cbd0], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGXFSZ: [libjvm.so+0xb6cbd0], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGILL: [libjvm.so+0xd68e10], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGUSR2: [libjvm.so+0xb6ca60], sa_mask[0]=00100000000000000000000000000000, sa_flags=SA_RESTART|SA_SIGINFO
+SIGHUP: SIG_DFL, sa_mask[0]=00000000000000000000000000000000, sa_flags=none
+SIGINT: SIG_DFL, sa_mask[0]=00000000000000000000000000000000, sa_flags=none
+SIGTERM: SIG_DFL, sa_mask[0]=00000000000000000000000000000000, sa_flags=none
+SIGQUIT: SIG_DFL, sa_mask[0]=00000000000000000000000000000000, sa_flags=none
+
+
+---------------  S Y S T E M  ---------------
+
+OS:DISTRIB_ID=Ubuntu
+DISTRIB_RELEASE=18.04
+DISTRIB_CODENAME=bionic
+DISTRIB_DESCRIPTION="Ubuntu 18.04.1 LTS"
+uname:Linux 4.15.0-20-generic #21-Ubuntu SMP Tue Apr 24 06:16:15 UTC 2018 x86_64
+OS uptime: 2 days 3:15 hours
+libc:glibc 2.27 NPTL 2.27 
+rlimit (soft/hard): STACK 8192k/infinity , CORE 0k/infinity , NPROC 15549/15549 , NOFILE 1048576/1048576 , AS infinity/infinity , CPU infinity/infinity , DATA infinity/infinity , FSIZE infinity/infinity , MEMLOCK 16384k/16384k
+load average:1.62 1.80 1.60
+
+/proc/meminfo:
+MemTotal:        4039548 kB
+MemFree:          102632 kB
+MemAvailable:      17892 kB
+Buffers:            1424 kB
+Cached:            98468 kB
+SwapCached:          664 kB
+Active:          3113020 kB
+Inactive:         637228 kB
+Active(anon):    3097264 kB
+Inactive(anon):   618980 kB
+Active(file):      15756 kB
+Inactive(file):    18248 kB
+Unevictable:          80 kB
+Mlocked:              80 kB
+SwapTotal:        969960 kB
+SwapFree:              0 kB
+Dirty:                72 kB
+Writeback:           116 kB
+AnonPages:       3649864 kB
+Mapped:            27128 kB
+Shmem:             65796 kB
+Slab:              74240 kB
+SReclaimable:      33752 kB
+SUnreclaim:        40488 kB
+KernelStack:       10928 kB
+PageTables:        53556 kB
+NFS_Unstable:          0 kB
+Bounce:                0 kB
+WritebackTmp:          0 kB
+CommitLimit:     2989732 kB
+Committed_AS:    8808544 kB
+VmallocTotal:   34359738367 kB
+VmallocUsed:           0 kB
+VmallocChunk:          0 kB
+HardwareCorrupted:     0 kB
+AnonHugePages:         0 kB
+ShmemHugePages:        0 kB
+ShmemPmdMapped:        0 kB
+CmaTotal:              0 kB
+CmaFree:               0 kB
+HugePages_Total:       0
+HugePages_Free:        0
+HugePages_Rsvd:        0
+HugePages_Surp:        0
+Hugepagesize:       2048 kB
+DirectMap4k:      196544 kB
+DirectMap2M:     3997696 kB
+
+/sys/kernel/mm/transparent_hugepage/enabled:
+always [madvise] never
+
+/sys/kernel/mm/transparent_hugepage/defrag (defrag/compaction efforts parameter):
+always defer defer+madvise [madvise] never
+
+
+/proc/sys/kernel/threads-max (system-wide limit on the number of threads):
+31099
+
+
+/proc/sys/vm/max_map_count (maximum number of memory map areas a process may have):
+65530
+
+
+/proc/sys/kernel/pid_max (system-wide limit on number of process identifiers):
+32768
+
+
+
+container (cgroup) information:
+container_type: cgroupv1
+cpu_cpuset_cpus: 0-1
+cpu_memory_nodes: 0
+active_processor_count: 2
+cpu_quota: -1
+cpu_period: 100000
+cpu_shares: -1
+memory_limit_in_bytes: -1
+memory_and_swap_limit_in_bytes: -2
+memory_soft_limit_in_bytes: -1
+memory_usage_in_bytes: 3840221184
+memory_max_usage_in_bytes: 9891840
+
+KVM virtualization detected
+Steal ticks since vm start: 0
+Steal ticks percentage since vm start:  0.000
+
+CPU:total 2 (initial active 2) (2 cores per cpu, 1 threads per core) family 6 model 142 stepping 10, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, avx, avx2, aes, clmul, 3dnowpref, lzcnt, tsc, tscinvbit
+CPU Model and flags from /proc/cpuinfo:
+model name	: Intel(R) Core(TM) i5-8250U CPU @ 1.60GHz
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx rdtscp lm constant_tsc rep_good nopl xtopology nonstop_tsc cpuid pni pclmulqdq ssse3 cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt aes xsave avx rdrand hypervisor lahf_lm abm 3dnowprefetch invpcid_single pti fsgsbase avx2 invpcid rdseed clflushopt
+
+Memory: 4k page, physical 4039548k(102632k free), swap 969960k(0k free)
+
+vm_info: OpenJDK 64-Bit Server VM (11.0.8+10-b944.34) for linux-amd64 JRE (11.0.8+10-b944.34), built on Sep 11 2020 12:47:33 by "" with gcc 8.3.1 20190311 (Red Hat 8.3.1-3)
+
+END.

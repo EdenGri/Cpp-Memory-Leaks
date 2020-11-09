@@ -5,9 +5,7 @@
 #include <string>
 #include <queue>
 #include "Graph.h"
-
-
-class Agent;
+#include "Agent.h"
 
 enum TreeType{
   Cycle,

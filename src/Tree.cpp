@@ -49,9 +49,7 @@ Tree *Tree::createTree(const Session &session, int rootLabel) { //todo
     }
         return output;
 
-
     }
-}
 
 //copy constructor implementation
 Tree::Tree(const Tree &oth) : node(oth.node), children() {
@@ -101,12 +99,14 @@ Tree::Tree(Tree &&oth) : node(oth.node), children(move(oth.children)) {}
 
 //destructor implementation
 Tree::~Tree() {
-//    if (this != nullptr) { // not sure. :|
+    if (this != nullptr) {
         for (int i = 0; i < children.size(); i++) { //deletes pointers in children vector
             delete children[i];
+         //todo clear
         }
-    }//
-} //todo check why this is highlighted
+    }
+}
+ //todo check why this is highlighted
 
 //getter to get node
 int Tree::getNode() const {
@@ -147,11 +147,10 @@ Tree *pop(std::vector<Tree *> &vec) {
 }
 
 int MaxRankTree::traceTree() {
-    //first phase: find using BFS what is the max children size
     size_t max_children = 0;
     int output(-1);
     vector<Tree *> queue;
-    queue.push_back(this); ///****
+    queue.push_back(this);
     while (!queue.empty()) {
         Tree *curr = pop(queue);
         for (auto child : curr->getChildren()) {
@@ -170,8 +169,7 @@ MaxRankTree *MaxRankTree::clone() const {
 
 RootTree::RootTree(int rootLabel) : Tree(rootLabel) {
 
-} //todo
-
+}
 int RootTree::traceTree() {
     return getNode();
 }

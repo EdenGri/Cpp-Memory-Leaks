@@ -19,8 +19,6 @@ using json = nlohmann::json;
 Session::Session(const std::string &path) : g({}) {
     std::ifstream jsonRead(path);
     json jsonParser = json::parse(jsonRead);
-
-    vector<pair<string, int>> agents1 = jsonParser["agents"];
     g = jsonParser["graph"];
     string tree1 = jsonParser["tree"];
     if (tree1 == "M") {
@@ -28,6 +26,7 @@ Session::Session(const std::string &path) : g({}) {
     } else {}
 
     std::queue<int> infectionQueue;
+    cycle = 0;
 
     for (auto& elem: jsonParser["agents"]) {
         if(elem[0]=="C"){
@@ -85,13 +84,12 @@ Session &Session::operator=(Session &&oth) {
 
 
 void Session::simulate() {
-    cycle = 0;
     while (!g.isTerminateCondition()) {
         int cycleSize = agents.size();
         for (int i = 0; i < cycleSize; i++) {
-            agents[i]->act(this);
-            cycle++;
+            agents[i]->act(*this); //todo check
         }
+        cycle++;
     }
 }
 
@@ -123,7 +121,7 @@ int Session::dequeueInfected() {
     return -1;
 }
 
-TreeType Session::getTreeType() {
+TreeType Session::getTreeType() const {
     json jsonFile;
     string jsonTreeType = jsonFile.at("tree");
 

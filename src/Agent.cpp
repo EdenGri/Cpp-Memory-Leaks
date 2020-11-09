@@ -15,7 +15,7 @@ void ContactTracer::act(Session &session) {
     if (!infectionQueue.empty()){
         int infectedNode= infectionQueue.back();
         Graph g=session.getGraph();
-        Tree* tree = session.getGraph().Bfs(infectedNode, session) ; //todo bfs from infectedNode
+        Tree* tree = session.getGraph().Bfs(infectedNode, session) ;
         g.disconnectNode(tree->traceTree());
     }
 }

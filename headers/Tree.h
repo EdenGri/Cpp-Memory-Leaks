@@ -44,6 +44,7 @@ public:
 
 private:
     int node;
+protected:
     std::vector<Tree *> children;
 };
 

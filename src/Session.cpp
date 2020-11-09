@@ -68,17 +68,19 @@ Session::~Session() {
 }
 
 void Session::simulate() {
-    while (!g.isTerminateCondition()){
-        int cycleSize=agents.size();
-        for(int i=0; i < cycleSize;i++){
+    cycle = 0;
+    while (!g.isTerminateCondition()) {
+        int cycleSize = agents.size();
+        for (int i = 0; i < cycleSize; i++) {
             agents[i]->act(this);
-        cycle++;
+            cycle++;
+        }
     }
 }
 
 void Session::addAgent(const Agent &agent) {
     Agent *clone = agent.clone();
-    agents.push_back(clone); //*** todo check if we need to create new agents vector
+    agents.push_back(clone);
 }
 
 void Session::setGraph(const Graph &graph) {
@@ -114,8 +116,6 @@ TreeType Session::getTreeType() {
 }
 
 
-}
-
 //move assignment operator implementation
 Session &Session::operator=(Session &&oth) {
     return <#initializer#>;
@@ -130,6 +130,7 @@ void Session::clearAgents() {
 queue<int> Session::getInfectionQueue() {
     return infectionQueue;
 }
+
 
 
 

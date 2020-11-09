@@ -49,8 +49,6 @@ Tree *Tree::createTree(const Session &session, int rootLabel) { //todo
     }
         return output;
 
-
-    }
 }
 
 //copy constructor implementation
@@ -101,12 +99,12 @@ Tree::Tree(Tree &&oth) : node(oth.node), children(move(oth.children)) {}
 
 //destructor implementation
 Tree::~Tree() {
-//    if (this != nullptr) { // not sure. :|
+    if (this != nullptr) {
         for (int i = 0; i < children.size(); i++) { //deletes pointers in children vector
             delete children[i];
         }
-    }//
-} //todo check why this is highlighted
+    }
+}
 
 //getter to get node
 int Tree::getNode() const {

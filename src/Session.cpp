@@ -20,13 +20,21 @@ Session::Session(const std::string &path) : g({}) {
     std::ifstream jsonRead(path);
     json jsonParser = json::parse(jsonRead);
 
-    vector<pair<string, int>> agents1 = jsonParser["agents"];
     g = jsonParser["graph"];
     string tree1 = jsonParser["tree"];
     if (tree1 == "M") {
 
     } else {}
+    json jsonFile;
+    string jsonTreeType = jsonFile.at("tree");
 
+    if (jsonTreeType == "C") {
+        return Cycle;
+    } else if (jsonTreeType == "M") {
+        return MaxRank;
+    } else if (jsonTreeType == "R") {
+        return Root;
+    }
     std::queue<int> infectionQueue;
 
     for (auto& elem: jsonParser["agents"]) {
@@ -47,7 +55,7 @@ Session &Session::operator=(const Session &oth) {
     if (this == &oth) {
         return *this;
     } else {
-        g = oth.g;
+        g= oth.g;
         treeType=oth.treeType;
         infectionQueue=oth.infectionQueue;
         clearAgents();
@@ -89,7 +97,7 @@ void Session::simulate() {
     while (!g.isTerminateCondition()) {
         int cycleSize = agents.size();
         for (int i = 0; i < cycleSize; i++) {
-            agents[i]->act(this);
+            agents[i]->act(*this);
             cycle++;
         }
     }
@@ -123,18 +131,7 @@ int Session::dequeueInfected() {
     return -1;
 }
 
-TreeType Session::getTreeType() {
-    json jsonFile;
-    string jsonTreeType = jsonFile.at("tree");
 
-    if (jsonTreeType == "C") {
-        return Cycle;
-    } else if (jsonTreeType == "M") {
-        return MaxRank;
-    } else if (jsonTreeType == "R") {
-        return Root;
-    }
-}
 
 
 
@@ -147,6 +144,10 @@ void Session::clearAgents() {
 
 queue<int> Session::getInfectionQueue() {
     return infectionQueue;
+}
+
+TreeType Session::getTreeType() const {
+    return treeType;
 }
 
 

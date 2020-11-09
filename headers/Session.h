@@ -5,7 +5,7 @@
 #include <string>
 #include <queue>
 #include "Graph.h"
-#include "Agent.h"
+
 
 class Agent;
 
@@ -20,14 +20,22 @@ public:
     // Creates a session from a given config.json filepath
     Session(const std::string& path);
 
+    //Copy constructor
+    Session(const Session& oth);
+
     //Copy assignment operator
     Session &operator=(const Session &oth);
 
+    //move assignment operator
+    Session &operator=(Session &&oth);
+
     //Move constructor
-    Session(Session &&oth);
+    Session(Session &&oth) noexcept ;
 
     //Destructor
     virtual ~Session();
+
+
 
 
 
@@ -58,7 +66,7 @@ public:
     void clearAgents();
 
     //Return infectionQueue
-    queue<int> getInfectionQueue();
+    std::queue<int> getInfectionQueue();
 
     //todo ruleOf5
 private:

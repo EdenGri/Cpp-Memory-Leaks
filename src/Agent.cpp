@@ -15,13 +15,9 @@ void ContactTracer::act(Session &session) {
         int infectedNode= infectionQueue.back();
         Graph g=session.getGraph();
         Tree tree= //todo bfs from infectedNode
-        if (session.getTreeType()=="M"){
-            g.disconnectNode(tree.traceTree())
-        } else if (session.getTreeType()=="C"){
-            g.disconnectNode(tree.traceTree())
-        } else{
-            g.disconnectNode(tree.traceTree())
-        }
+
+            g.disconnectNode(tree.traceTree());
+
     }
 }
 

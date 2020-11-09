@@ -7,6 +7,7 @@
 #include "Graph.h"
 #include <Session.h>
 #include "json.hpp"
+#include "Agent.h"
 
 
 using json = nlohmann::json;
@@ -35,7 +36,7 @@ Session::Session(const std::string &path) : g({}) {
             Agent* agent= new ContactTracer();
             agents.push_back(agent);
         } else{
-            Agent* agent=new Virus(this,elem[1]);
+            Agent* agent=new Virus(elem[1]);
             agents.push_back(agent);
         }
 
@@ -52,7 +53,6 @@ Session &Session::operator=(const Session &oth) {
         treeType=oth.treeType;
         infectionQueue=oth.infectionQueue;
         clearAgents();
-        agents.clear();
         for (auto agent : oth.agents) {
             agents.push_back(agent->clone());
         }
@@ -66,6 +66,25 @@ Session::Session(Session &&oth): g(oth.g),treeType(oth.treeType),infectionQueue(
 Session::~Session() {
     clearAgents();
 }
+
+Session::Session(const Session &oth) : g(oth.g), treeType(oth.treeType), infectionQueue(oth.infectionQueue){
+    for (int i = 0; i < oth.agents.size(); ++i) {
+        agents.push_back(oth.agents[i]->clone());
+    }
+}
+
+Session &Session::operator=(Session &&oth) {
+    if (&oth == this) {
+        return *this;
+    }
+    g=oth.g;
+    treeType=oth.treeType;
+    infectionQueue=oth.infectionQueue;
+    this -> agents.swap(oth.agents);
+    return *this;
+}
+
+
 
 void Session::simulate() {
     cycle = 0;
@@ -125,11 +144,13 @@ void Session::clearAgents() {
     for (auto & agent : agents) {
         delete agent;
     }
+    agents.clear();
 }
 
 queue<int> Session::getInfectionQueue() {
     return infectionQueue;
 }
+
 
 
 

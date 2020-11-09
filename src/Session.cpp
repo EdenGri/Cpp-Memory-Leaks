@@ -21,10 +21,8 @@ Session::Session(const std::string &path) : g({}) {
     json jsonParser = json::parse(jsonRead);
 
     vector<pair<string, int>> agents1 = jsonParser["agents"];
-    vector<vector<int>> graph1 = jsonParser["graph"];
+    g = jsonParser["graph"];
     string tree1 = jsonParser["tree"];
-
-    g = graph1;
     if (tree1 == "M") {
 
     } else {}

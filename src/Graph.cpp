@@ -60,7 +60,24 @@ bool Graph::isTerminateCondition() {
 
 Tree* Graph::Bfs(Session &session,int node) {
 Tree* output = Tree::createTree(session,node);
-queue<*Tree>bfsQueue;
+vector<bool> visited(edges.size(), false);
+queue<Tree*>bfsQueue;
+bfsQueue.push(output);
+visited[output->getNode()] = true;
+while(!bfsQueue.empty()){
+    Tree* curr = bfsQueue.front();
+    bfsQueue.pop();
+    for(int i = 0; i < edges[curr->getNode()].size(); i++){
+        if(edges[curr->getNode()][i]==1&&!visited[i]){
+            visited[i]=true;
+            Tree* tree_temp = Tree:: createTree(session, i);
+            curr->addChild(*tree_temp);
+            bfsQueue.push(tree_temp);
+        }
 
+
+    }
+}
+    return output;
 }
 

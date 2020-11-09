@@ -4,20 +4,28 @@
 CMakeFiles/Assignment1.dir/src/Agent.cpp.o: ../headers/Agent.h
 CMakeFiles/Assignment1.dir/src/Agent.cpp.o: ../headers/Graph.h
 CMakeFiles/Assignment1.dir/src/Agent.cpp.o: ../headers/Session.h
+CMakeFiles/Assignment1.dir/src/Agent.cpp.o: ../headers/Tree.h
 CMakeFiles/Assignment1.dir/src/Agent.cpp.o: ../src/Agent.cpp
 
 CMakeFiles/Assignment1.dir/src/Graph.cpp.o: ../headers/Graph.h
+CMakeFiles/Assignment1.dir/src/Graph.cpp.o: ../headers/Session.h
+CMakeFiles/Assignment1.dir/src/Graph.cpp.o: ../headers/Tree.h
 CMakeFiles/Assignment1.dir/src/Graph.cpp.o: ../src/Graph.cpp
 
+CMakeFiles/Assignment1.dir/src/Session.cpp.o: ../headers/Agent.h
 CMakeFiles/Assignment1.dir/src/Session.cpp.o: ../headers/Graph.h
 CMakeFiles/Assignment1.dir/src/Session.cpp.o: ../headers/Session.h
+CMakeFiles/Assignment1.dir/src/Session.cpp.o: ../headers/Tree.h
 CMakeFiles/Assignment1.dir/src/Session.cpp.o: ../headers/json.hpp
 CMakeFiles/Assignment1.dir/src/Session.cpp.o: ../src/Session.cpp
 
+CMakeFiles/Assignment1.dir/src/Tree.cpp.o: ../headers/Graph.h
+CMakeFiles/Assignment1.dir/src/Tree.cpp.o: ../headers/Session.h
 CMakeFiles/Assignment1.dir/src/Tree.cpp.o: ../headers/Tree.h
 CMakeFiles/Assignment1.dir/src/Tree.cpp.o: ../src/Tree.cpp
 
 CMakeFiles/Assignment1.dir/src/main.cpp.o: ../headers/Graph.h
 CMakeFiles/Assignment1.dir/src/main.cpp.o: ../headers/Session.h
+CMakeFiles/Assignment1.dir/src/main.cpp.o: ../headers/Tree.h
 CMakeFiles/Assignment1.dir/src/main.cpp.o: ../src/main.cpp
 

@@ -139,10 +139,6 @@ TreeType Session::getTreeType() {
 }
 
 
-//move assignment operator implementation
-Session &Session::operator=(Session &&oth) {
-    return <#initializer#>;
-}
 
 void Session::clearAgents() {
     for (auto & agent : agents) {

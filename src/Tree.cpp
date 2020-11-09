@@ -102,9 +102,11 @@ Tree::~Tree() {
     if (this != nullptr) {
         for (int i = 0; i < children.size(); i++) { //deletes pointers in children vector
             delete children[i];
+         //todo clear
         }
     }
 }
+ //todo check why this is highlighted
 
 //getter to get node
 int Tree::getNode() const {
@@ -149,7 +151,7 @@ int MaxRankTree::traceTree() {
     size_t max_children = 0;
     int output(-1);
     vector<Tree *> queue;
-    queue.push_back(this); ///****
+    queue.push_back(this);
     while (!queue.empty()) {
         Tree *curr = pop(queue);
         for (auto child : curr->getChildren()) {
@@ -168,8 +170,7 @@ MaxRankTree *MaxRankTree::clone() const {
 
 RootTree::RootTree(int rootLabel) : Tree(rootLabel) {
 
-} //todo
-
+}
 int RootTree::traceTree() {
     return getNode();
 }

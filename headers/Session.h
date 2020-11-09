@@ -73,13 +73,14 @@ public:
 
     //todo ruleOf5
 private:
-    Graph g;
+    Graph g; //todo
     TreeType treeType;
     std::vector<Agent*> agents;
     std:: queue<int> infectionQueue;
     int cycle;
 
 
+    void setGraph(const Graph &graph);
 };
 
 #endif

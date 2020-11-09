@@ -4,17 +4,16 @@
 #include "Graph.h"
 #include "Tree.h"
 #include <queue>
-
 using namespace std;
 
 Graph::Graph(std::vector<std::vector<int>> matrix) :
         edges(matrix), infectedList(), occupiedList(), terminateCondition(false), numOfOccupiedNodes(0) {}
 
 
+
 void Graph::infectNode(int nodeInd) {
     infectedList.insert(nodeInd);
 }
-
 bool Graph::isInfected(int nodeInd) {
     // just in set c++20 theres contains function.
     return infectedList.find(nodeInd) != infectedList.end();
@@ -23,6 +22,7 @@ bool Graph::isInfected(int nodeInd) {
 void Graph::occupyNode(int nodeInd) {
     occupiedList.insert(nodeInd);
 }
+
 
 
 bool Graph::isOccupied(int nodeInd) {
@@ -40,7 +40,7 @@ void Graph::disconnectNode(int nodeInd) {
 int Graph::healthyNeighbor(int nodeInt) {
     for (int i = 0; i < edges.size(); ++i) {
         int j = edges[nodeInt][i];
-        if (j == 1) {
+        if (j==1){
             if (!isOccupied(j)) {
                 return j;
             }
@@ -50,22 +50,22 @@ int Graph::healthyNeighbor(int nodeInt) {
 }
 
 bool Graph::isTerminateCondition() {
-    if (occupiedList.size() != numOfOccupiedNodes) {
-        numOfOccupiedNodes = occupiedList.size();
-    } else {
-        terminateCondition = true;
+    if (occupiedList.size()!=numOfOccupiedNodes){
+        numOfOccupiedNodes=occupiedList.size();
+    } else{
+        terminateCondition= true;
     }
     return terminateCondition;
 }
 
-Tree *Graph::Bfs(Session &session, int node) {
+Tree* Graph::Bfs(Session &session, int node) {
     Tree *output = Tree::createTree(session, node);
     vector<bool> visited(edges.size(), false);
     queue<Tree *> bfsQueue;
     bfsQueue.push(output);
     visited[output->getNode()] = true;
     while (!bfsQueue.empty()) {
-        Tree *curr = bfsQueue.front();
+        Tree *curr = bfsQueue.front(); //todo check
         bfsQueue.pop();
         for (int i = 0; i < edges[curr->getNode()].size(); i++) {
             if (edges[curr->getNode()][i] == 1 && !visited[i]) {

@@ -87,6 +87,10 @@ void Session::setGraph(const Graph &graph) {
     g = graph;
 }
 
+int Session:: getCycle() const{
+    return cycle;
+}
+
 Graph Session::getGraph() const {
     return g;
 }

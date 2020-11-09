@@ -2,8 +2,9 @@
 // Created by spl211 on 07/11/2020.
 //
 #include "Graph.h"
-
-
+#include "Tree.h"
+#include <queue>
+using namespace std;
 
 Graph::Graph(std::vector<std::vector<int>> matrix):
 edges(matrix) , infectedList(), occupiedList(),terminateCondition(false),numOfOccupiedNodes(0){}
@@ -21,6 +22,8 @@ bool Graph::isInfected(int nodeInd) {
 void Graph::occupyNode(int nodeInd) {
     occupiedList.insert(nodeInd);
 }
+
+
 
 bool Graph::isOccupied(int nodeInd) {
     // just in set c++20 theres contains function.
@@ -53,5 +56,11 @@ bool Graph::isTerminateCondition() {
         terminateCondition= true;
     }
     return terminateCondition;
+}
+
+Tree* Graph::Bfs(Session &session,int node) {
+Tree* output = Tree::createTree(session,node);
+queue<*Tree>bfsQueue;
+
 }
 

@@ -4,6 +4,7 @@
 #include <queue>
 #include <Agent.h>
 #include "Tree.h"
+#include "Graph.h"
 
 Agent::Agent() {}
 
@@ -14,7 +15,7 @@ void ContactTracer::act(Session &session) {
     if (!infectionQueue.empty()){
         int infectedNode= infectionQueue.back();
         Graph g=session.getGraph();
-        Tree tree= //todo bfs from infectedNode
+        Tree* tree = session.getGraph().Bfs(infectedNode, session) ; //todo bfs from infectedNode
         if (session.getTreeType()=="M"){
             g.disconnectNode(tree.traceTree())
         } else if (session.getTreeType()=="C"){
@@ -24,6 +25,7 @@ void ContactTracer::act(Session &session) {
         }
     }
 }
+
 
 ContactTracer *ContactTracer::clone() const {
     return new ContactTracer(*this);

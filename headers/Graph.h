@@ -3,6 +3,7 @@
 
 #include <set>
 #include <vector>
+#include "Tree.h"
 
 class Graph{
 public:
@@ -26,7 +27,13 @@ public:
 
     //Return the index of the next healthy node neighbor that "nodeInd" should occupy
     int healthyNeighbor(int nodeInd);
+
+    //returns if termination condition is satisfied
     bool isTerminateCondition();
+
+    //Bfs implementation
+    Tree* Bfs(Session &session, int node);
+
 
 private:
     std::vector<std::vector<int>> edges;

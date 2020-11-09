@@ -34,7 +34,23 @@ void Tree::addChild(const Tree &child) {
 }
 
 Tree *Tree::createTree(const Session &session, int rootLabel) { //todo
-    return nullptr;
+    TreeType type = session.getTreeType();
+    Tree* output;
+    switch (type) {
+        case Cycle:
+            output = new CycleTree(rootLabel, session.getCycle());
+            break;
+        case MaxRank:
+            output = new MaxRankTree(rootLabel);
+            break;
+        case Root:
+            output = new RootTree(rootLabel);
+            break;
+    }
+        return output;
+
+
+    }
 }
 
 //copy constructor implementation

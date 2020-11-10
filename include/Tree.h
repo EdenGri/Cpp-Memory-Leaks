@@ -23,7 +23,7 @@ public:
     //const cause it does not change "this"
     int getNode() const;
 
-    std::vector<Tree*> getChildren();
+    std::vector<Tree *> getChildren();
 
     //copy constructor
     Tree(const Tree &oth);

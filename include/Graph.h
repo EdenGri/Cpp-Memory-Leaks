@@ -5,7 +5,7 @@
 #include <vector>
 #include "../include/Tree.h"
 
-class Graph{
+class Graph {
 public:
     // Creates graph with the given adjacency matrix
     Graph(std::vector<std::vector<int>> matrix);
@@ -32,7 +32,7 @@ public:
     bool isTerminateCondition();
 
     //Bfs implementation
-    Tree* Bfs(Session &session, int node);
+    Tree *Bfs(Session &session, int node);
 
 
 private:

@@ -12,9 +12,9 @@ Tree::Tree(int rootLabel) : node(rootLabel), children() {
 }
 
 void Tree::addChild(const Tree &child) {
-    vector<Tree *> &vec_old = this->children; //easier todo delete
+    vector<Tree *> &vec_old = this->children;
     Tree *item = child.clone();
-    vector<Tree *> vec_new = vector<Tree *>(); // vector<Tree*> vec_new; calls empty constructor todo
+    vector<Tree *> vec_new;
     if (vec_old.empty()) {
         vec_old.push_back(item);
         return;
@@ -23,7 +23,7 @@ void Tree::addChild(const Tree &child) {
     for (; vec_old[i]->node < item->node; i++) {
         if (vec_old[i]->node < item->node)
             vec_new.push_back(
-                    (vec_old[i])); // we did push back to pointer and therefore dont need to delete old pointers and there is no memory leak todo delete
+                    (vec_old[i]));
     }
     vec_new.push_back(item);
     for (; i < vec_old.size(); i++)
@@ -32,9 +32,9 @@ void Tree::addChild(const Tree &child) {
     this->children = vec_new;
 }
 
-Tree *Tree::createTree(const Session &session, int rootLabel) { //todo
+Tree *Tree::createTree(const Session &session, int rootLabel) {
     TreeType type = session.getTreeType();
-    Tree* output;
+    Tree *output;
     switch (type) {
         case Cycle:
             output = new CycleTree(rootLabel, session.getCycle());
@@ -46,7 +46,7 @@ Tree *Tree::createTree(const Session &session, int rootLabel) { //todo
             output = new RootTree(rootLabel);
             break;
     }
-        return output;
+    return output;
 
 }
 
@@ -60,19 +60,18 @@ Tree::Tree(const Tree &oth) : node(oth.node), children() {
 //copy assignment operator implementation
 Tree &Tree::operator=(const Tree &oth) {
     if (this != &oth) {
-        this->node = oth.node; //updates node field todo delete
+        this->node = oth.node; //updates node field
 
-        //clear existing children list
-        //we can press on highlighted for and make prettier for todo delete
-        for (int i = 0; i < children.size(); i++) //deletes pointers in me vector
-            delete children[i];
+        //clears existing children list
+
+        for (auto & i : children) //deletes pointers in me vector
+            delete i;
 
         children.clear(); //clears vector and makes it size 0
 
         //Add new children list from other vector
-        for (int i = 0; i < oth.children.size(); i++)
-            children.push_back(
-                    oth.children[i]->clone()); //creates copy with diff location on heap using clone (deep-copy) todo delete
+        for (auto i : oth.children)
+            children.push_back(i->clone());
     }
     return *this;
 }
@@ -97,12 +96,11 @@ Tree::~Tree() {
     if (this != nullptr) {
         for (int i = 0; i < children.size(); i++) { //deletes pointers in children vector
             delete children[i];
-            children[i]= nullptr;
+            children[i] = nullptr;
         }
-        //todo children clear
+        //todo children clear & check why highlighted
     }
 }
- //todo check why this is highlighted
 
 //getter to get node
 int Tree::getNode() const {
@@ -114,7 +112,7 @@ std::vector<Tree *> Tree::getChildren() {
     return children;
 }
 
-CycleTree::CycleTree(int rootLabel, int currCycle) : Tree(rootLabel), currCycle(currCycle) { //todo
+CycleTree::CycleTree(int rootLabel, int currCycle) : Tree(rootLabel), currCycle(currCycle) {
 }
 
 int CycleTree::traceTree() {
@@ -131,7 +129,7 @@ CycleTree *CycleTree::clone() const {
     return new CycleTree(*this);
 }
 
-MaxRankTree::MaxRankTree(int rootLabel) : Tree(rootLabel) { //todo
+MaxRankTree::MaxRankTree(int rootLabel) : Tree(rootLabel) {
 
 }
 //'pop_front', took from stackoverflow
@@ -165,12 +163,12 @@ MaxRankTree *MaxRankTree::clone() const {
 }
 
 RootTree::RootTree(int rootLabel) : Tree(rootLabel) {
-
 }
+
 int RootTree::traceTree() {
     return getNode();
 }
 
-RootTree *RootTree::clone() const { //
+RootTree *RootTree::clone() const {
     return new RootTree(*this);
 }

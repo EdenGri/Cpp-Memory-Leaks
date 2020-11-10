@@ -7,8 +7,6 @@
 #include "../include/Session.h"
 
 
-
-
 using namespace std;
 using json = nlohmann::json;
 
@@ -21,17 +19,17 @@ Session::Session(const std::string &path) : g({}) {
     string tree = j["tree"];
     if (tree == "M")
         treeType = MaxRank;
-    else if(tree == "C")
+    else if (tree == "C")
         treeType = Cycle;
     else
         treeType = Root;
 
-    for (auto& elem: j["agents"]) {
-        if(elem[0]=="C"){
-            Agent* agent= new ContactTracer();
+    for (auto &elem: j["agents"]) {
+        if (elem[0] == "C") {
+            Agent *agent = new ContactTracer();
             agents.push_back(agent);
-        } else{
-            Agent* agent= new Virus(elem[1]);
+        } else {
+            Agent *agent = new Virus(elem[1]);
             agents.push_back(agent);
         }
 
@@ -48,8 +46,8 @@ Session &Session::operator=(const Session &oth) {
     } else {
         g = oth.g;
         cycle = oth.cycle;
-        treeType=oth.treeType;
-        infectionQueue=oth.infectionQueue;
+        treeType = oth.treeType;
+        infectionQueue = oth.infectionQueue;
         clearAgents();
         for (auto agent : oth.agents) {
             agents.push_back(agent->clone());
@@ -59,14 +57,16 @@ Session &Session::operator=(const Session &oth) {
 
 }
 
-Session::Session(Session &&oth):
-g(move(oth.g)),treeType(oth.treeType),infectionQueue(move(oth.infectionQueue)), cycle(oth.cycle),agents(move(oth.agents)){}
+Session::Session(Session &&oth) :
+        g(move(oth.g)), treeType(oth.treeType), infectionQueue(move(oth.infectionQueue)), cycle(oth.cycle),
+        agents(move(oth.agents)) {}
 
 Session::~Session() {
     clearAgents();
 }
 
-Session::Session(const Session &oth) : g(oth.g), treeType(oth.treeType), infectionQueue(oth.infectionQueue), cycle(oth.cycle){
+Session::Session(const Session &oth) : g(oth.g), treeType(oth.treeType), infectionQueue(oth.infectionQueue),
+                                       cycle(oth.cycle) {
     for (int i = 0; i < oth.agents.size(); ++i) {
         agents.push_back(oth.agents[i]->clone());
     }
@@ -82,7 +82,6 @@ Session &Session::operator=(Session &&oth) {
     }
     return *this;
 }
-
 
 
 void Session::simulate() {
@@ -104,7 +103,7 @@ void Session::setGraph(const Graph &graph) {
     g = graph;
 }
 
-int Session:: getCycle() const{
+int Session::getCycle() const {
     return cycle;
 }
 
@@ -113,12 +112,12 @@ Graph Session::getGraph() const {
 }
 
 void Session::enqueueInfected(int i) {
-    infectionQueue.push(i);
+    infectionQueue.push(i); //todo check
 }
 
 int Session::dequeueInfected() {
     if (!infectionQueue.empty()) {
-        return infectionQueue.back();
+        return infectionQueue.back(); //todo check
     }
     return -1;
 }
@@ -128,9 +127,8 @@ TreeType Session::getTreeType() const {
 }
 
 
-
 void Session::clearAgents() {
-    for (auto & agent : agents) {
+    for (auto &agent : agents) {
         delete agent;
     }
     agents.clear();

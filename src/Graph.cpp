@@ -14,7 +14,7 @@ void Graph::infectNode(int nodeInd) {
     infectedList.insert(nodeInd);
 }
 bool Graph::isInfected(int nodeInd) {
-    // just in set c++20 theres contains function.
+    // only c++20 contains appropriate function
     return infectedList.find(nodeInd) != infectedList.end();
 }
 
@@ -25,7 +25,7 @@ void Graph::occupyNode(int nodeInd) {
 
 
 bool Graph::isOccupied(int nodeInd) {
-    // just in set c++20 theres contains function.
+    // only c++20 contains appropriate function
     return occupiedList.find(nodeInd) != occupiedList.end();
 }
 

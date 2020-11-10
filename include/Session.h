@@ -8,19 +8,19 @@
 #include "../include/Agent.h"
 #include "../include/json.hpp"
 
-enum TreeType{
-  Cycle,
-  MaxRank,
-  Root
+enum TreeType {
+    Cycle,
+    MaxRank,
+    Root
 };
 
-class Session{
+class Session {
 public:
     // Creates a session from a given config.json filepath
-    Session(const std::string& path);
+    Session(const std::string &path);
 
     //Copy constructor
-    Session(const Session& oth);
+    Session(const Session &oth);
 
     //Copy assignment operator
     Session &operator=(const Session &oth);
@@ -29,7 +29,7 @@ public:
     Session &operator=(Session &&oth);
 
     //Move constructor
-    Session(Session &&oth) ;
+    Session(Session &&oth);
 
     //Destructor
     virtual ~Session();
@@ -39,10 +39,10 @@ public:
     void simulate();
 
     // Adds new agent to the end of agents vector
-    void addAgent(const Agent& agent);
+    void addAgent(const Agent &agent);
 
     // Sets the graph g to its new value
-    void setGraph(const Graph& graph);
+    void setGraph(const Graph &graph);
 
     //Graph Getter
     Graph getGraph() const;
@@ -69,8 +69,8 @@ public:
 private:
     Graph g;
     TreeType treeType;
-    std::vector<Agent*> agents;
-    std:: queue<int> infectionQueue;
+    std::vector<Agent *> agents;
+    std::queue<int> infectionQueue;
     int cycle;
 
 

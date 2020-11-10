@@ -2,7 +2,9 @@
 #define AGENT_H_
 
 #include <vector>
-#include "Session.h"
+#include "../include/Session.h"
+#include "../include/Tree.h"
+#include "../include/Graph.h"
 
 class Agent{
 public:

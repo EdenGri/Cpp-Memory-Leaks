@@ -4,10 +4,9 @@
 #include <vector>
 #include <string>
 #include <queue>
-#include "Graph.h"
-
-
-class Agent;
+#include "../include/Graph.h"
+#include "../include/Agent.h"
+#include "../include/json.hpp"
 
 enum TreeType{
   Cycle,
@@ -34,10 +33,6 @@ public:
 
     //Destructor
     virtual ~Session();
-
-
-
-
 
     // Simulates the contact tracing system and creates an output.json for the given session
     //runs in a loop until termination condition is satisfied

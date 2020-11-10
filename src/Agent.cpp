@@ -2,9 +2,7 @@
 // Created by spl211 on 31/10/2020.
 //
 #include <queue>
-#include <Agent.h>
-#include "Tree.h"
-#include "Graph.h"
+#include "../include/Agent.h"
 
 Agent::Agent() {}
 

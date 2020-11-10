@@ -1,8 +1,7 @@
 //
 // Created by spl211 on 07/11/2020.
 //
-#include "Graph.h"
-#include "Tree.h"
+#include "../include/Graph.h"
 #include <queue>
 using namespace std;
 
@@ -63,7 +62,7 @@ Tree* Graph::Bfs(Session &session, int node) {
     vector<bool> visited(edges.size(), false);
     queue<Tree *> bfsQueue;
     bfsQueue.push(output);
-    visited[output->getNode()] = true;
+    visited[node] = true;
     while (!bfsQueue.empty()) {
         Tree *curr = bfsQueue.front(); //todo check
         bfsQueue.pop();

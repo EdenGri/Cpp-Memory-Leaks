@@ -3,7 +3,7 @@
 
 #include <set>
 #include <vector>
-#include "Tree.h"
+#include "../include/Tree.h"
 
 class Graph{
 public:
@@ -41,7 +41,6 @@ private:
     std::set<int> occupiedList;
     int numOfOccupiedNodes;
     bool terminateCondition;
-
 };
 
 #endif

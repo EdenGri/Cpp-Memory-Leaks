@@ -31,12 +31,12 @@ Session::Session(const std::string &path) : g({}) {
         } else {
             Agent *agent = new Virus(elem[1]);
             agents.push_back(agent);
-            g.occupyNode(elem[1]);
+            g.occupyNode(elem[1]); //todo check if need
         }
 
     }
     cycle = 0;
-    //todo check if we need to initialize ocuupiedlist
+
 
 
 }
@@ -60,8 +60,8 @@ Session &Session::operator=(const Session &oth) {
 
 //copy constructor implementation
 Session::Session(const Session &oth) : g(oth.g), treeType(oth.treeType), infectionQueue(oth.infectionQueue), cycle(oth.cycle) {
-    for (int i = 0; i < oth.agents.size(); ++i) {
-        agents.push_back(oth.agents[i]->clone());
+    for (auto agent : oth.agents) {
+        agents.push_back(agent->clone());
     }
 }
 //move assignment operator
@@ -95,6 +95,17 @@ void Session::simulate() {
         }
         cycle++;
     }
+
+    vector<int> infected_vertices;
+    for(auto& agent : agents){
+        if(Virus* v = dynamic_cast<Virus*>(agent))
+            infected_vertices.push_back(v->getNode());
+    }
+    nlohmann::json j;
+    j["infected"] = infected_vertices;
+    j["graph"] = g.getEdges();
+    std::ofstream o("../output.json");
+    o << j << std::endl;
 }
 
 void Session::addAgent(const Agent &agent) {
@@ -110,19 +121,19 @@ int Session::getCycle() const {
     return cycle;
 }
 
-Graph Session::getGraph() const {
+Graph& Session::getGraph() {
     return g;
 }
 
 void Session::enqueueInfected(int i) {
-    infectionQueue.push(i); //todo check
+    infectionQueue.push(i);
 }
 
 int Session::dequeueInfected() {
     if (!infectionQueue.empty()) {
-        int nodeInd = infectionQueue.front(); //todo check
+        int nodeInd = infectionQueue.front();
         infectionQueue.pop();
-        return nodeInd; //todo check
+        return nodeInd;
     }
     return -1;
 }
@@ -139,7 +150,7 @@ void Session::clearAgents() {
     agents.clear();
 }
 
-queue<int> Session::getInfectionQueue() {
+queue<int>& Session::getInfectionQueue() {
     return infectionQueue;
 }
 

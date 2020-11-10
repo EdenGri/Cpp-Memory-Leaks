@@ -2,10 +2,8 @@
 #define AGENT_H_
 
 #include <vector>
-#include "../include/Graph.h"
 #include "../include/Tree.h"
-
-class Session;
+#include "../include/Graph.h"
 
 class Agent {
 public:
@@ -15,7 +13,7 @@ public:
 
     virtual void act(Session &session) = 0;
 
-
+    virtual ~Agent() = default;
 };
 
 class ContactTracer : public Agent {
@@ -23,8 +21,7 @@ public:
     ContactTracer();
 
     // Dequeues an infected node from the infected queue, and tries to break the chain of infection
-    //creates shortest path tree from infected node using BFS, uses tracetree() method to obtain index of next infected node and removes all edges in graph connecting to it
-
+    // creates shortest path tree from infected node using BFS, uses tracetree() method to obtain index of next infected node and removes all edges in graph connecting to it
 
     virtual Agent *clone() const;
     virtual void act(Session& session);
@@ -41,9 +38,7 @@ public:
     virtual Agent *clone() const;
     virtual void act(Session& session);
 
-
-
-
+    int getNode() const;
 private:
     const int nodeInd;
 

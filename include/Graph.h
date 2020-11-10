@@ -34,6 +34,10 @@ public:
     //Bfs implementation
     Tree *Bfs(Session &session, int node);
 
+    //edges getter
+    std::vector<std::vector<int>> getEdges() const;
+
+
 
 private:
     std::vector<std::vector<int>> edges;

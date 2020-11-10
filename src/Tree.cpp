@@ -13,15 +13,15 @@ Tree::Tree(int rootLabel) : node(rootLabel), children() {
 }
 
 void Tree::addChild(const Tree &child) {
-    vector<Tree *> &vec_old = this->children;
-    Tree *item = child.clone();
-    vector<Tree *> vec_new;
+    vector<Tree*> &vec_old = this->children;
+    Tree* item = child.clone();
+    vector<Tree*> vec_new;
     if (vec_old.empty()) {
         vec_old.push_back(item);
         return;
     }
     int i = 0;
-    for (; vec_old[i]->node < item->node; i++) {
+    for (; i < vec_old.size() && vec_old[i]->node < item->node; i++) {
         if (vec_old[i]->node < item->node)
             vec_new.push_back(
                     (vec_old[i]));
@@ -33,9 +33,9 @@ void Tree::addChild(const Tree &child) {
     this->children = vec_new;
 }
 
-Tree *Tree::createTree(const Session &session, int rootLabel) {
+Tree* Tree::createTree(const Session &session, int rootLabel) {
     TreeType type = session.getTreeType();
-    Tree *output;
+    Tree* output;
     switch (type) {
         case Cycle:
             output = new CycleTree(rootLabel, session.getCycle());
@@ -53,7 +53,7 @@ Tree *Tree::createTree(const Session &session, int rootLabel) {
 
 //copy constructor implementation
 Tree::Tree(const Tree &oth) : node(oth.node), children() {
-    for (Tree *p_child : oth.children) {
+    for (Tree* p_child : oth.children) {
         this->addChild(*p_child);
     }
 }
@@ -65,7 +65,7 @@ Tree &Tree::operator=(const Tree &oth) {
 
         //clears existing children list
 
-        for (auto & i : children) //deletes pointers in me vector
+        for (auto &i : children) //deletes pointers in me vector
             delete i;
 
         children.clear(); //clears vector and makes it size 0
@@ -109,7 +109,7 @@ int Tree::getNode() const {
 }
 
 //getter to get children
-std::vector<Tree *> Tree::getChildren() {
+std::vector<Tree*> Tree::getChildren() {
     return children;
 }
 
@@ -117,16 +117,16 @@ CycleTree::CycleTree(int rootLabel, int currCycle) : Tree(rootLabel), currCycle(
 }
 
 int CycleTree::traceTree() {
-    Tree *currTree = this;
+    Tree* currTree = this;
     for (int i = 0; i < currCycle && !currTree->getChildren().empty(); ++i) {
-        vector<Tree *> children = currTree->getChildren();
+        vector<Tree*> children = currTree->getChildren();
         currTree = children[0];
     }
     return currTree->getNode();
 }
 
 
-CycleTree *CycleTree::clone() const {
+CycleTree* CycleTree::clone() const {
     return new CycleTree(*this);
 }
 
@@ -135,8 +135,8 @@ MaxRankTree::MaxRankTree(int rootLabel) : Tree(rootLabel) {
 }
 //'pop_front', took from stackoverflow
 
-Tree *pop(std::vector<Tree *> &vec) {
-    Tree *first = vec[0];
+Tree* pop(std::vector<Tree*> &vec) {
+    Tree* first = vec[0];
     vec.erase(vec.begin());
     return first;
 }
@@ -145,21 +145,23 @@ int MaxRankTree::traceTree() {
     //first phase: find using BFS what is the max children size
     size_t max_children = 0;
     int output(-1);
-    vector<Tree *> queue;
+    vector<Tree*> queue;
     queue.push_back(this);
     while (!queue.empty()) {
-        Tree *curr = pop(queue);
-        for (auto child : curr->getChildren()) {
+        Tree* curr = pop(queue);
+        vector<Tree*> curr_children = curr->getChildren();
+        for (auto child : curr_children) {
             queue.push_back(child);
-            if (curr->getChildren().size() > max_children)
-                max_children = curr->getChildren().size();//compares two things of unsigned longs
-            output = this->getNode();
+        }
+        if (curr->getChildren().size() > max_children || max_children==0) {
+            max_children = curr->getChildren().size();//compares two things of unsigned longs
+            output = curr->getNode();
         }
     }
     return output;
 }
 
-MaxRankTree *MaxRankTree::clone() const {
+MaxRankTree* MaxRankTree::clone() const {
     return new MaxRankTree(*this);
 }
 
@@ -170,6 +172,6 @@ int RootTree::traceTree() {
     return getNode();
 }
 
-RootTree *RootTree::clone() const {
+RootTree* RootTree::clone() const {
     return new RootTree(*this);
 }

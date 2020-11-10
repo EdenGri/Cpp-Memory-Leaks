@@ -45,7 +45,7 @@ public:
     void setGraph(const Graph &graph);
 
     //Graph Getter
-    Graph getGraph() const;
+    Graph& getGraph();
 
     // Enqueues the infected node index into the infected queue
     void enqueueInfected(int);
@@ -64,7 +64,7 @@ public:
     void clearAgents();
 
     //Return infectionQueue
-    std::queue<int> getInfectionQueue();
+    std::queue<int>& getInfectionQueue();
 
 private:
     Graph g;

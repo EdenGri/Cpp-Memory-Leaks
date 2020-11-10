@@ -16,15 +16,17 @@ Agent* ContactTracer::clone() const {
 
 
 void ContactTracer::act(Session &session) {
-    std::queue<int> infectionQueue = session.getInfectionQueue();
+    std::queue<int>& infectionQueue = session.getInfectionQueue();
     if (!infectionQueue.empty()) {
-        int infectedNode = infectionQueue.back(); //todo check
-        Graph g = session.getGraph();
-        Tree *tree = session.getGraph().Bfs( session, infectedNode);
-        g.disconnectNode(tree->traceTree());
+        int infectedNode = infectionQueue.front(); //todo check
+        infectionQueue.pop();
+        Graph& g = session.getGraph();
+        Tree* tree = g.Bfs(session, infectedNode);
+        int deadly = tree->traceTree();
+        g.disconnectNode(deadly);
+        delete tree;
     }
 }
-
 
 
 Virus::Virus(int nodeInd) : Agent(), nodeInd(nodeInd) {
@@ -34,18 +36,23 @@ Agent* Virus::clone() const {
     return new Virus(*this);
 }
 
-void Virus::act(Session& session) {
-    Graph g = session.getGraph();
+void Virus::act(Session &session) {
+    Graph& g = session.getGraph();
     if (!g.isInfected(nodeInd)) {
         g.infectNode(nodeInd);
         session.enqueueInfected(nodeInd);
     }
+
     int healthyNeighbor = g.healthyNeighbor(nodeInd);
     if (healthyNeighbor != -1) {
         g.occupyNode(healthyNeighbor);
         Virus virus = Virus(healthyNeighbor);
         session.addAgent(virus);
     }
+}
+
+int Virus::getNode() const {
+    return nodeInd;
 }
 
 

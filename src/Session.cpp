@@ -39,7 +39,7 @@ Session::Session(const std::string &path) : g({}) {
 
 
 }
-
+//copy assignment operator implementation
 Session &Session::operator=(const Session &oth) {
     if (this == &oth) {
         return *this;
@@ -57,21 +57,13 @@ Session &Session::operator=(const Session &oth) {
 
 }
 
-Session::Session(Session &&oth) :
-        g(move(oth.g)), treeType(oth.treeType), infectionQueue(move(oth.infectionQueue)), cycle(oth.cycle),
-        agents(move(oth.agents)) {}
-
-Session::~Session() {
-    clearAgents();
-}
-
-Session::Session(const Session &oth) : g(oth.g), treeType(oth.treeType), infectionQueue(oth.infectionQueue),
-                                       cycle(oth.cycle) {
+//copy constructor implementation
+Session::Session(const Session &oth) : g(oth.g), treeType(oth.treeType), infectionQueue(oth.infectionQueue), cycle(oth.cycle) {
     for (int i = 0; i < oth.agents.size(); ++i) {
         agents.push_back(oth.agents[i]->clone());
     }
 }
-
+//move assignment operator
 Session &Session::operator=(Session &&oth) {
     if (&oth != this) {
         g = oth.g;
@@ -81,6 +73,16 @@ Session &Session::operator=(Session &&oth) {
         this->agents.swap(oth.agents);
     }
     return *this;
+}
+
+//move constructor implementation
+Session::Session(Session &&oth) :
+        g(move(oth.g)), treeType(oth.treeType), infectionQueue(move(oth.infectionQueue)), cycle(oth.cycle),
+        agents(move(oth.agents)) {}
+
+//destructor implementation
+Session::~Session() {
+    clearAgents();
 }
 
 

@@ -8,6 +8,7 @@
 
 
 
+
 using namespace std;
 using json = nlohmann::json;
 
@@ -58,13 +59,8 @@ Session &Session::operator=(const Session &oth) {
 
 }
 
-Session::Session(Session &&oth): g(oth.g),treeType(oth.treeType),infectionQueue(oth.infectionQueue), cycle(oth.cycle){
-    int size = agents.size();
-    for(int i = 0; i <size; i++) {
-        agents[i] = oth.agents[i];
-        oth.agents[i] = nullptr;
-    }
-}
+Session::Session(Session &&oth):
+g(move(oth.g)),treeType(oth.treeType),infectionQueue(move(oth.infectionQueue)), cycle(oth.cycle),agents(move(oth.agents)){}
 
 Session::~Session() {
     clearAgents();
@@ -77,14 +73,13 @@ Session::Session(const Session &oth) : g(oth.g), treeType(oth.treeType), infecti
 }
 
 Session &Session::operator=(Session &&oth) {
-    if (&oth == this) {
-        return *this;
+    if (&oth != this) {
+        g = oth.g;
+        cycle = oth.cycle;
+        treeType = oth.treeType;
+        infectionQueue = oth.infectionQueue;
+        this->agents.swap(oth.agents);
     }
-    g=oth.g;
-    cycle = oth.cycle;
-    treeType=oth.treeType;
-    infectionQueue=oth.infectionQueue;
-    this -> agents.swap(oth.agents);
     return *this;
 }
 

@@ -66,9 +66,8 @@ public:
     //Return infectionQueue
     std::queue<int> getInfectionQueue();
 
-    //todo ruleOf5
 private:
-    Graph g; //todo
+    Graph g;
     TreeType treeType;
     std::vector<Agent*> agents;
     std:: queue<int> infectionQueue;

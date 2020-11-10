@@ -6,7 +6,7 @@
 
 Agent::Agent() {}
 
-ContactTracer::ContactTracer() {}
+ContactTracer::ContactTracer() : Agent() {}
 
 void ContactTracer::act(Session &session) {
     std::queue<int> infectionQueue = session.getInfectionQueue();

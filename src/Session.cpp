@@ -30,12 +30,11 @@ Session::Session(const std::string &path) : g({}) {
             Agent* agent= new ContactTracer();
             agents.push_back(agent);
         } else{
-            Agent* agent=new Virus(elem[1]);
+            Agent* agent= new Virus(elem[1]);
             agents.push_back(agent);
         }
 
     }
-    std::queue<int> infectionQueue;
     cycle = 0;
     //todo check if we need to initialize ocuupiedlist
 
@@ -95,7 +94,7 @@ void Session::simulate() {
     while (!g.isTerminateCondition()) {
         int cycleSize = agents.size();
         for (int i = 0; i < cycleSize; i++) {
-            agents[i]->act(*this); //todo check
+            agents[i]->act(*this);
         }
         cycle++;
     }

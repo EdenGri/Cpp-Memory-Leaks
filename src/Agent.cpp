@@ -20,15 +20,11 @@ void ContactTracer::act(Session &session) {
     if (!infectionQueue.empty()) {
         int infectedNode = infectionQueue.back(); //todo check
         Graph g = session.getGraph();
-        Tree *tree = session.getGraph().Bfs(infectedNode, session);
+        Tree *tree = session.getGraph().Bfs( session, infectedNode);
         g.disconnectNode(tree->traceTree());
     }
 }
 
-
-Agent *ContactTracer::clone() const {
-    return new ContactTracer(*this);
-}
 
 
 Virus::Virus(int nodeInd) : Agent(), nodeInd(nodeInd) {

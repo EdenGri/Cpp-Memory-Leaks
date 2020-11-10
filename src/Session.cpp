@@ -119,7 +119,9 @@ void Session::enqueueInfected(int i) {
 
 int Session::dequeueInfected() {
     if (!infectionQueue.empty()) {
-        return infectionQueue.back(); //todo check
+        int nodeInd = infectionQueue.front(); //todo check
+        infectionQueue.pop();
+        return nodeInd; //todo check
     }
     return -1;
 }

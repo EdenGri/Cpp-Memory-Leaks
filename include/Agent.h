@@ -22,10 +22,11 @@ public:
     ContactTracer();
 
     // Dequeues an infected node from the infected queue, and tries to break the chain of infection
-    //creates shortest path tree from infected node using BFS, uses trace tree method to obtain index of next infected node and removes all edges in graph connecting to it
-    virtual void act(Session &session);
+    //creates shortest path tree from infected node using BFS, uses tracetree() method to obtain index of next infected node and removes all edges in graph connecting to it
+
 
     virtual Agent *clone() const;
+    virtual void act(Session& session);
 };
 
 
@@ -35,9 +36,11 @@ public:
 
     // Infect the nodes they occupy if not already infected
     // spread themselves into adjacent nodes (virus-free neighbors) in ascending order using node indices
-    virtual void act(Session &session);
 
     virtual Agent *clone() const;
+    virtual void act(Session& session);
+
+
 
 
 private:

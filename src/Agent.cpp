@@ -8,6 +8,12 @@ Agent::Agent() {}
 
 ContactTracer::ContactTracer() : Agent() {}
 
+
+Agent* ContactTracer::clone() const {
+    return new ContactTracer(*this);
+}
+
+
 void ContactTracer::act(Session &session) {
     std::queue<int> infectionQueue = session.getInfectionQueue();
     if (!infectionQueue.empty()) {
@@ -27,8 +33,11 @@ Agent *ContactTracer::clone() const {
 Virus::Virus(int nodeInd) : Agent(), nodeInd(nodeInd) {
 }
 
+Agent* Virus::clone() const {
+    return new Virus(*this);
+}
 
-void Virus::act(Session &session) {
+void Virus::act(Session& session) {
     Graph g = session.getGraph();
     if (!g.isInfected(nodeInd)) {
         g.infectNode(nodeInd);
@@ -43,9 +52,7 @@ void Virus::act(Session &session) {
 }
 
 
-Agent *Virus::clone() const {
-    return new Virus(*this);
-}
+
 
 
 

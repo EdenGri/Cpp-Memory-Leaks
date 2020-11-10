@@ -4,6 +4,7 @@
 
 #include "../include/Tree.h"
 #include <iostream>
+#include "../include/Session.h"
 
 
 using namespace std;

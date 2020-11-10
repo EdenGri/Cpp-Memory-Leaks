@@ -74,7 +74,6 @@ private:
     int cycle;
 
 
-    void setGraph(const Graph &graph);
 };
 
 #endif

@@ -3,6 +3,7 @@
 //
 #include <queue>
 #include "../include/Agent.h"
+#include "../include/Session.h"
 
 Agent::Agent() {}
 

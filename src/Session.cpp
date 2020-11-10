@@ -31,6 +31,7 @@ Session::Session(const std::string &path) : g({}) {
         } else {
             Agent *agent = new Virus(elem[1]);
             agents.push_back(agent);
+            g.occupyNode(elem[1]);
         }
 
     }

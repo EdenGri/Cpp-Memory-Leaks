@@ -59,36 +59,32 @@ Tree::Tree(const Tree &oth) : node(oth.node), children() {
 
 //copy assignment operator implementation
 Tree &Tree::operator=(const Tree &oth) {
-    if (this == &oth)
-        return *this;
+    if (this != &oth) {
+        this->node = oth.node; //updates node field todo delete
 
-    this->node = oth.node; //updates node field todo delete
+        //clear existing children list
+        //we can press on highlighted for and make prettier for todo delete
+        for (int i = 0; i < children.size(); i++) //deletes pointers in me vector
+            delete children[i];
 
-    //clear existing children list
-    //we can press on highlighted for and make prettier for todo delete
-    for (int i = 0; i < children.size(); i++) //deletes pointers in me vector
-        delete children[i];
+        children.clear(); //clears vector and makes it size 0
 
-    children.clear(); //clears vector and makes it size 0
-
-    //Add new children list from other vector
-    for (int i = 0; i < oth.children.size(); i++)
-        children.push_back(
-                oth.children[i]->clone()); //creates copy with diff location on heap using clone (deep-copy) todo delete
-
+        //Add new children list from other vector
+        for (int i = 0; i < oth.children.size(); i++)
+            children.push_back(
+                    oth.children[i]->clone()); //creates copy with diff location on heap using clone (deep-copy) todo delete
+    }
     return *this;
 }
 
 //move assignment operator implementation
 Tree &Tree::operator=(Tree &&oth) {
-    if (&oth == this)
-        return *this;
+    if (&oth != this) {
+        this->node = oth.node;
 
-    this->node = oth.node;
-
-    //swap is a vector function to swap fields and use memory space already made
-    this->children.swap(oth.children);
-
+        //swap is a vector function to swap fields and use memory space already made
+        this->children.swap(oth.children);
+    }
     return *this;
 
 }
@@ -101,8 +97,9 @@ Tree::~Tree() {
     if (this != nullptr) {
         for (int i = 0; i < children.size(); i++) { //deletes pointers in children vector
             delete children[i];
-         //todo clear
+            children[i]= nullptr;
         }
+        //todo children clear
     }
 }
  //todo check why this is highlighted

@@ -44,7 +44,7 @@
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/home/spl211/CLionProjects/Spl-Assignment1/headers"/>
+					<Add directory="/home/spl211/CLionProjects/Spl-Assignment1/include"/>
 					<Add directory="/usr/include/c++/7"/>
 					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
 					<Add directory="/usr/include/c++/7/backward"/>
@@ -68,7 +68,7 @@
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/home/spl211/CLionProjects/Spl-Assignment1/headers"/>
+					<Add directory="/home/spl211/CLionProjects/Spl-Assignment1/include"/>
 					<Add directory="/usr/include/c++/7"/>
 					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
 					<Add directory="/usr/include/c++/7/backward"/>
@@ -86,16 +86,16 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/spl211/CLionProjects/Spl-Assignment1/headers/Agent.h">
+		<Unit filename="/home/spl211/CLionProjects/Spl-Assignment1/include/Agent.h">
 			<Option target="Assignment1"/>
 		</Unit>
-		<Unit filename="/home/spl211/CLionProjects/Spl-Assignment1/headers/Graph.h">
+		<Unit filename="/home/spl211/CLionProjects/Spl-Assignment1/include/Graph.h">
 			<Option target="Assignment1"/>
 		</Unit>
-		<Unit filename="/home/spl211/CLionProjects/Spl-Assignment1/headers/Session.h">
+		<Unit filename="/home/spl211/CLionProjects/Spl-Assignment1/include/Session.h">
 			<Option target="Assignment1"/>
 		</Unit>
-		<Unit filename="/home/spl211/CLionProjects/Spl-Assignment1/headers/Tree.h">
+		<Unit filename="/home/spl211/CLionProjects/Spl-Assignment1/include/Tree.h">
 			<Option target="Assignment1"/>
 		</Unit>
 		<Unit filename="/home/spl211/CLionProjects/Spl-Assignment1/src/Agent.cpp">

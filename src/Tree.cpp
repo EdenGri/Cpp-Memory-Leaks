@@ -2,10 +2,9 @@
 // Created by spl211 on 31/10/2020.
 //
 
-#include <Tree.h>
+#include "../include/Tree.h"
 #include <iostream>
 
-#include "Session.h"
 
 using namespace std;
 

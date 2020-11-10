@@ -3,7 +3,7 @@
 
 #include <set>
 #include <vector>
-#include "Tree.h"
+#include "../include/Tree.h"
 
 class Graph{
 public:

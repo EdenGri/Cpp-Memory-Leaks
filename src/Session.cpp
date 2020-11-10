@@ -4,10 +4,8 @@
 #include <fstream>
 #include <iostream>
 #include <vector>
-#include "Graph.h"
-#include <Session.h>
-#include "json.hpp"
-#include "Agent.h"
+#include "../include/Session.h"
+
 
 
 using namespace std;

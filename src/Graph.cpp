@@ -1,8 +1,7 @@
 //
 // Created by spl211 on 07/11/2020.
 //
-#include "Graph.h"
-#include "Tree.h"
+#include "../include/Graph.h"
 #include <queue>
 
 using namespace std;

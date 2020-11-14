@@ -31,7 +31,7 @@ Session::Session(const std::string &path) : g({}) {
         } else {
             Agent *agent = new Virus(elem[1]);
             agents.push_back(agent);
-            g.occupyNode(elem[1]); //todo check if need
+            g.occupyNode(elem[1]);
         }
 
     }
@@ -104,7 +104,7 @@ void Session::simulate() {
     nlohmann::json j;
     j["infected"] = infected_vertices;
     j["graph"] = g.getEdges();
-    std::ofstream o("../output.json");
+    std::ofstream o("./output.json");
     o << j << std::endl;
 }
 

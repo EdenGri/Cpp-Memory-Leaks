@@ -18,7 +18,7 @@ Agent* ContactTracer::clone() const {
 void ContactTracer::act(Session &session) {
     std::queue<int>& infectionQueue = session.getInfectionQueue();
     if (!infectionQueue.empty()) {
-        int infectedNode = infectionQueue.front(); //todo check
+        int infectedNode = infectionQueue.front();
         infectionQueue.pop();
         Graph& g = session.getGraph();
         Tree* tree = g.Bfs(session, infectedNode);

@@ -67,7 +67,7 @@ Tree* Graph::Bfs(Session &session, int node) {
     bfsQueue.push(output);
     visited[node] = true;
     while (!bfsQueue.empty()) {
-        Tree* curr = bfsQueue.front(); //todo check
+        Tree* curr = bfsQueue.front();
         bfsQueue.pop();
         vector<int> are_neighbors = edges[curr->getNode()];
         for (int i = 0; i < are_neighbors.size(); i++) {

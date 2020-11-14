@@ -20,6 +20,7 @@ void Tree::addChild(const Tree &child) {
         vec_old.push_back(item);
         return;
     }
+    //finds appropriate place according to child's label
     int i = 0;
     for (; i < vec_old.size() && vec_old[i]->node < item->node; i++) {
         if (vec_old[i]->node < item->node)
@@ -82,7 +83,7 @@ Tree &Tree::operator=(Tree &&oth) {
     if (&oth != this) {
         this->node = oth.node;
 
-        //swap is a vector function to swap fields and use memory space already made
+        //swap is a vector function to swap fields and uses memory space already made
         this->children.swap(oth.children);
     }
     return *this;
@@ -99,7 +100,6 @@ Tree::~Tree() {
             delete children[i];
             children[i] = nullptr;
         }
-        //todo children clear & check why highlighted
     }
 }
 
@@ -133,7 +133,6 @@ CycleTree* CycleTree::clone() const {
 MaxRankTree::MaxRankTree(int rootLabel) : Tree(rootLabel) {
 
 }
-//'pop_front', took from stackoverflow
 
 Tree* pop(std::vector<Tree*> &vec) {
     Tree* first = vec[0];
@@ -142,7 +141,6 @@ Tree* pop(std::vector<Tree*> &vec) {
 }
 
 int MaxRankTree::traceTree() {
-    //first phase: find using BFS what is the max children size
     size_t max_children = 0;
     int output(-1);
     vector<Tree*> queue;
@@ -154,7 +152,7 @@ int MaxRankTree::traceTree() {
             queue.push_back(child);
         }
         if (curr->getChildren().size() > max_children || max_children==0) {
-            max_children = curr->getChildren().size();//compares two things of unsigned longs
+            max_children = curr->getChildren().size();
             output = curr->getNode();
         }
     }

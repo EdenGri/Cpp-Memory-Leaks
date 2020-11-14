@@ -6,7 +6,7 @@
 using namespace std;
 
 Graph::Graph(std::vector<std::vector<int>> matrix) :
-        edges(matrix), infectedList(), occupiedList(), terminateCondition(false), numOfOccupiedNodes(0) {}
+        edges(matrix), infectedList(), occupiedList(), numOfOccupiedNodes(0), terminateCondition(false) {}
 
 
 void Graph::infectNode(int nodeInd) {
@@ -32,14 +32,14 @@ bool Graph::isOccupied(int nodeInd) {
 }
 
 void Graph::disconnectNode(int nodeInd) {
-    for (int i = 0; i < edges.size(); ++i) {
+    for (std::size_t i = 0; i < edges.size(); ++i) {
         edges[nodeInd][i] = 0;
         edges[i][nodeInd] = 0;
     }
 }
 
 int Graph::healthyNeighbor(int nodeInt) {
-    for (int i = 0; i < edges.size(); ++i) {
+    for (std::size_t i = 0; i < edges.size(); ++i) {
         int is_neighbor = edges[nodeInt][i];
         if (is_neighbor == 1) {
             bool is_oc = isOccupied(i);
@@ -70,7 +70,7 @@ Tree* Graph::Bfs(Session &session, int node) {
         Tree* curr = bfsQueue.front();
         bfsQueue.pop();
         vector<int> are_neighbors = edges[curr->getNode()];
-        for (int i = 0; i < are_neighbors.size(); i++) {
+        for (std::size_t i = 0; i < are_neighbors.size(); i++) {
             int is_neighbor = are_neighbors[i];
             if (is_neighbor && !visited[i]) {
                 visited[i] = true;

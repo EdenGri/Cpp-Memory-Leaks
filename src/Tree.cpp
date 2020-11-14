@@ -21,7 +21,7 @@ void Tree::addChild(const Tree &child) {
         return;
     }
     //finds appropriate place according to child's label
-    int i = 0;
+    std::size_t i = 0;
     for (; i < vec_old.size() && vec_old[i]->node < item->node; i++) {
         if (vec_old[i]->node < item->node)
             vec_new.push_back(
@@ -96,9 +96,9 @@ Tree::Tree(Tree &&oth) : node(oth.node), children(move(oth.children)) {}
 //destructor implementation
 Tree::~Tree() {
     if (this != nullptr) {
-        for (int i = 0; i < children.size(); i++) { //deletes pointers in children vector
-            delete children[i];
-            children[i] = nullptr;
+        for (auto & i : children) { //deletes pointers in children vector
+            delete i;
+            i = nullptr;
         }
     }
 }

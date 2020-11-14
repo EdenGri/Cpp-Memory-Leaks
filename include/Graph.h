@@ -43,7 +43,7 @@ private:
     std::vector<std::vector<int>> edges;
     std::set<int> infectedList;
     std::set<int> occupiedList;
-    int numOfOccupiedNodes;
+    size_t numOfOccupiedNodes;
     bool terminateCondition;
 };
 

@@ -70,7 +70,7 @@ Tree* Graph::Bfs(Session &session, int node) {
         Tree* curr = bfsQueue.front();
         bfsQueue.pop();
         vector<int> are_neighbors = edges[curr->getNode()];
-        for (std::size_t i = 0; i < are_neighbors.size(); i++) {
+        for( auto& i : are_neighbors){
             int is_neighbor = are_neighbors[i];
             if (is_neighbor && !visited[i]) {
                 visited[i] = true;

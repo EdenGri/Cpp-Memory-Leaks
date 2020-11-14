@@ -95,12 +95,9 @@ Tree::Tree(Tree &&oth) : node(oth.node), children(move(oth.children)) {}
 
 //destructor implementation
 Tree::~Tree() {
-    if (this != nullptr) {
-        for (auto & i : children) { //deletes pointers in children vector
+        for (auto & i : children) //deletes pointers in children vector
             delete i;
-            i = nullptr;
-        }
-    }
+        children.clear(); //todo check if need
 }
 
 //getter to get node

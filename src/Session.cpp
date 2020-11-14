@@ -11,7 +11,7 @@ using namespace std;
 using json = nlohmann::json;
 
 
-Session::Session(const std::string &path) : g({}) {
+Session::Session(const std::string &path) : g({}), treeType(), agents(), infectionQueue(), cycle(0) {
     std::ifstream i(path);
     json j;
     i >> j;
@@ -35,51 +35,49 @@ Session::Session(const std::string &path) : g({}) {
         }
 
     }
-    cycle = 0;
-
-
-
 }
+
 //copy assignment operator implementation
 Session &Session::operator=(const Session &oth) {
     if (this == &oth) {
         return *this;
     } else {
         g = oth.g;
-        cycle = oth.cycle;
         treeType = oth.treeType;
-        infectionQueue = oth.infectionQueue;
         clearAgents();
         for (auto agent : oth.agents) {
             agents.push_back(agent->clone());
         }
+        infectionQueue = oth.infectionQueue;
+        cycle = oth.cycle;
         return *this;
     }
 
 }
 
 //copy constructor implementation
-Session::Session(const Session &oth) : g(oth.g), treeType(oth.treeType), infectionQueue(oth.infectionQueue), cycle(oth.cycle) {
+Session::Session(const Session &oth) : g(oth.g), treeType(oth.treeType), agents(), infectionQueue(oth.infectionQueue),cycle(oth.cycle) {
     for (auto agent : oth.agents) {
         agents.push_back(agent->clone());
     }
 }
+
 //move assignment operator
 Session &Session::operator=(Session &&oth) {
-    if (&oth != this) {
+    if (&oth != this){
         g = oth.g;
-        cycle = oth.cycle;
         treeType = oth.treeType;
-        infectionQueue = oth.infectionQueue;
         this->agents.swap(oth.agents);
+        infectionQueue = oth.infectionQueue;
+        cycle = oth.cycle;
     }
     return *this;
 }
 
 //move constructor implementation
 Session::Session(Session &&oth) :
-        g(move(oth.g)), treeType(oth.treeType), infectionQueue(move(oth.infectionQueue)), cycle(oth.cycle),
-        agents(move(oth.agents)) {}
+        g(move(oth.g)), treeType(oth.treeType),agents(move(oth.agents)), infectionQueue(move(oth.infectionQueue)), cycle(oth.cycle)
+         {}
 
 //destructor implementation
 Session::~Session() {
@@ -97,8 +95,8 @@ void Session::simulate() {
     }
 
     vector<int> infected_vertices;
-    for(auto& agent : agents){
-        if(Virus* v = dynamic_cast<Virus*>(agent))
+    for (auto &agent : agents) {
+        if (Virus *v = dynamic_cast<Virus *>(agent))
             infected_vertices.push_back(v->getNode());
     }
     nlohmann::json j;
@@ -121,7 +119,7 @@ int Session::getCycle() const {
     return cycle;
 }
 
-Graph& Session::getGraph() {
+Graph &Session::getGraph() {
     return g;
 }
 
@@ -150,7 +148,7 @@ void Session::clearAgents() {
     agents.clear();
 }
 
-queue<int>& Session::getInfectionQueue() {
+queue<int> &Session::getInfectionQueue() {
     return infectionQueue;
 }
 

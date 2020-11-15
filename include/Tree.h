@@ -9,35 +9,36 @@ class Tree {
 public:
     Tree(int rootLabel);
 
-    //adds child to children vector while keeping the sorting order by label
+    //Adds a copy of the child to children vector while keeping the sorting order by label
     void addChild(const Tree &child);
-
+    //Creates empty tree (just with a root label) according to tree type
     static Tree *createTree(const Session &session, int rootLabel);
 
-    //returns index of node in the graph which contact tracers should disconnect
+    //Returns index of node in the graph which contact tracers should disconnect
     virtual int traceTree() = 0;
 
-    //clone creates a copy of the specific tree
+    //Creates a copy of the specific tree
     virtual Tree *clone() const = 0;
 
-    //const cause it does not change "this"
+    //Getter of the node label
     int getNode() const;
 
+    //Getter of the children
     std::vector<Tree *> getChildren();
 
-    //copy constructor
+    //Copy constructor
     Tree(const Tree &oth);
 
-    //copy assignment operator
+    //Copy assignment operator
     Tree &operator=(const Tree &oth);
 
-    //move assignment operator
+    //Move assignment operator
     Tree &operator=(Tree &&oth);
 
-    //move constructor
+    //Move constructor
     Tree(Tree &&oth);
 
-    //destructor
+    //Destructor
     virtual ~ Tree();
 
 
@@ -46,8 +47,8 @@ private:
     std::vector<Tree *> children;
 };
 
-//traverses tree from root always picking left-most child
-//returns c'th node in this trip, where c is the cycle in which the tree was created
+//Traverses tree from root always picking left-most child
+//Returns c'th node in this trip, where c is the cycle in which the tree was created
 //If the trip is less than c nodes long, returns the last node in it.
 class CycleTree : public Tree {
 public:
@@ -62,7 +63,7 @@ private:
     int currCycle;
 };
 
-//returns index of node in tree with highest num of children, if tied pick node with smallest depth, if tied left-most node will be picked
+//Returns index of node in tree with highest num of children, if tied pick node with smallest depth, if tied left-most node will be picked
 class MaxRankTree : public Tree {
 public:
     MaxRankTree(int rootLabel);
@@ -73,7 +74,7 @@ public:
 
 };
 
-//returns index of root of the tree
+//Returns index of root of the tree
 class RootTree : public Tree {
 public:
     RootTree(int rootLabel);

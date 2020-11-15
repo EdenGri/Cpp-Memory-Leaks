@@ -6,5 +6,5 @@ CXX_FLAGS = -g   -std=gnu++11
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/spl211/CLionProjects/Spl-Assignment1/include 
+CXX_INCLUDES = -I/home/spl211/Desktop/Spl-Assignment1/include 
 

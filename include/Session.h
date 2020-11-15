@@ -54,13 +54,13 @@ public:
     // Returns: The dequeued node index if exits, else returns -1
     int dequeueInfected();
 
-    //cycle getter
+    //Cycle getter
     int getCycle() const;
 
     // Returns: The tree type
     TreeType getTreeType() const;
 
-    //delete all the agents in the vector agents
+    //Delete all the agents in the vector agents
     void clearAgents();
 
     //Return infectionQueue

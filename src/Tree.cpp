@@ -52,20 +52,19 @@ Tree* Tree::createTree(const Session &session, int rootLabel) {
 
 }
 
-//copy constructor implementation
+
 Tree::Tree(const Tree &oth) : node(oth.node), children() {
     for (Tree* p_child : oth.children) {
         this->addChild(*p_child);
     }
 }
 
-//copy assignment operator implementation
+//Copy assignment operator implementation
 Tree &Tree::operator=(const Tree &oth) {
     if (this != &oth) {
         this->node = oth.node; //updates node field
 
         //clears existing children list
-
         for (auto &i : children) //deletes pointers in me vector
             delete i;
 
@@ -78,7 +77,7 @@ Tree &Tree::operator=(const Tree &oth) {
     return *this;
 }
 
-//move assignment operator implementation
+//Move assignment operator implementation
 Tree &Tree::operator=(Tree &&oth) {
     if (&oth != this) {
         this->node = oth.node;
@@ -90,22 +89,22 @@ Tree &Tree::operator=(Tree &&oth) {
 
 }
 
-//move constructor implementation
+//Move constructor implementation
 Tree::Tree(Tree &&oth) : node(oth.node), children(move(oth.children)) {}
 
-//destructor implementation
+
 Tree::~Tree() {
         for (auto & i : children) //deletes pointers in children vector
             delete i;
         children.clear(); //todo check if need
 }
 
-//getter to get node
+
 int Tree::getNode() const {
     return this->node;
 }
 
-//getter to get children
+
 std::vector<Tree*> Tree::getChildren() {
     return children;
 }

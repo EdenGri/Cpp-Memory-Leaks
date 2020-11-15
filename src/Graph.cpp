@@ -76,7 +76,7 @@ Tree* Graph::Bfs(Session &session, int node) {
                 visited[i] = true;
                 Tree* tree_temp = Tree::createTree(session, i);
                 curr->addChild(*tree_temp);
-
+                //push to bfsQueue pointer to the child that addChild adds to curr
                 for (auto c :curr->getChildren())
                     if (c->getNode() == i)
                         bfsQueue.push(c);

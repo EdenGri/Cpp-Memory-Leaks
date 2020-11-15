@@ -55,7 +55,7 @@ Session &Session::operator=(const Session &oth) {
 
 }
 
-//copy constructor implementation
+
 Session::Session(const Session &oth) : g(oth.g), treeType(oth.treeType), agents(), infectionQueue(oth.infectionQueue),cycle(oth.cycle) {
     for (auto agent : oth.agents) {
         agents.push_back(agent->clone());
@@ -79,7 +79,7 @@ Session::Session(Session &&oth) :
         g(move(oth.g)), treeType(oth.treeType),agents(move(oth.agents)), infectionQueue(move(oth.infectionQueue)), cycle(oth.cycle)
          {}
 
-//destructor implementation
+
 Session::~Session() {
     clearAgents();
 }
@@ -99,6 +99,7 @@ void Session::simulate() {
         if (Virus *v = dynamic_cast<Virus *>(agent))
             infected_vertices.push_back(v->getNode());
     }
+    //Creates the json file output
     nlohmann::json j;
     j["infected"] = infected_vertices;
     j["graph"] = g.getEdges();

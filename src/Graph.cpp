@@ -62,6 +62,7 @@ bool Graph::isTerminateCondition() {
 
 Tree* Graph::Bfs(Session &session, int node) {
     Tree* output = Tree::createTree(session, node);
+    //creating vector storing which nodes were visited
     vector<bool> visited(edges.size(), false);
     queue<Tree*> bfsQueue;
     bfsQueue.push(output);
@@ -70,6 +71,7 @@ Tree* Graph::Bfs(Session &session, int node) {
         Tree* curr = bfsQueue.front();
         bfsQueue.pop();
         vector<int> are_neighbors = edges[curr->getNode()];
+        //going over all neighbors of current node
         for( auto& i : are_neighbors){
             int is_neighbor = are_neighbors[i];
             if (is_neighbor && !visited[i]) {

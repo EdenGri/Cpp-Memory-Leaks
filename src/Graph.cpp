@@ -72,18 +72,20 @@ Tree* Graph::Bfs(Session &session, int node) {
         bfsQueue.pop();
         vector<int> are_neighbors = edges[curr->getNode()];
         //going over all neighbors of current node
-        for( auto& i : are_neighbors){
+        int i_helper = 0;
+        for(size_t i = 0; i < are_neighbors.size(); i++){
             int is_neighbor = are_neighbors[i];
             if (is_neighbor && !visited[i]) {
                 visited[i] = true;
-                Tree* tree_temp = Tree::createTree(session, i);
+                Tree* tree_temp = Tree::createTree(session, i_helper);
                 curr->addChild(*tree_temp);
                 //push to bfsQueue pointer to the child that addChild adds to curr
                 for (auto c :curr->getChildren())
-                    if (c->getNode() == i)
+                    if (c->getNode() == i_helper)
                         bfsQueue.push(c);
                 delete (tree_temp);
             }
+          i_helper++;
         }
     }
 

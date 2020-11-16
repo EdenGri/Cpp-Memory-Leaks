@@ -96,7 +96,7 @@ Tree::Tree(Tree &&oth) : node(oth.node), children(move(oth.children)) {}
 Tree::~Tree() {
         for (auto & i : children) //deletes pointers in children vector
             delete i;
-        children.clear(); //todo check if need
+        //children.clear(); //todo check if need
 }
 
 

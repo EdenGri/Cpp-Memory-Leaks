@@ -65,8 +65,13 @@ Tree &Tree::operator=(const Tree &oth) {
         this->node = oth.node; //updates node field
 
         //clears existing children list
-        for (auto &i : children) //deletes pointers in me vector
-            delete i;
+        for (auto &i : children) {
+            if (i != nullptr) { //todo check
+                //deletes pointers in me vector
+                delete i;
+            }
+            i = nullptr;
+        }
 
         children.clear(); //clears vector and makes it size 0
 
@@ -94,9 +99,13 @@ Tree::Tree(Tree &&oth) : node(oth.node), children(move(oth.children)) {}
 
 
 Tree::~Tree() {
-        for (auto & i : children) //deletes pointers in children vector
-            delete i;
-        //children.clear(); //todo check if need
+        for (auto & i : children) {
+            if(i != nullptr) {
+                //deletes pointers in children vector
+                delete i;
+            }
+            i = nullptr;
+        }
 }
 
 

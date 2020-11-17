@@ -144,7 +144,7 @@ TreeType Session::getTreeType() const {
 
 void Session::clearAgents() {
     for (auto &agent : agents) {
-        if(agent != nullptr) { //todo check
+        if(agent != nullptr) {
             delete agent;
         }
         agent = nullptr;

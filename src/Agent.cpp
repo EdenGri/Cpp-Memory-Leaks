@@ -26,7 +26,7 @@ void ContactTracer::act(Session &session) {
         //finds next infected node and disconnects from graph
         int deadly = tree->traceTree();
         g.disconnectNode(deadly);
-        if (tree != nullptr) { //todo check
+        if (tree != nullptr) {
             delete tree;
         }
         tree = nullptr;

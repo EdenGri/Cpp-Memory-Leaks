@@ -66,7 +66,7 @@ Tree &Tree::operator=(const Tree &oth) {
 
         //clears existing children list
         for (auto &i : children) {
-            if (i != nullptr) { //todo check
+            if (i != nullptr) {
                 //deletes pointers in me vector
                 delete i;
             }
